@@ -16,7 +16,7 @@ tar -zxf venus.tar.gz
 patch -p1 < patches/venus-apply-reading-list-options.patch
 
 # Create a local config, optionally edit it.
-cp conf/config.ini-dist conf/config.conf
+cp conf/config.ini-dist conf/config.ini
 cp conf/hg-feeds.opml-dist conf/hg-feeds.opml
 
 == Usage ==
