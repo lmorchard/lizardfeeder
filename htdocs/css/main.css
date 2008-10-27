@@ -1,0 +1,99 @@
+/**
+ *  
+ */
+body {
+    font: 13px arial;
+}
+h1 { 
+    margin: 0.25em 0
+}
+
+#templates, .template { 
+    display: none 
+}
+
+dl#status {
+    padding: 0; margin: 0;
+}
+dl#status dt {
+    float: left;
+    width: 20ex;
+    text-align: right;
+    padding-right: 1em;
+}
+dl#status dd {
+
+}
+
+ul#feed-items {
+    width: 50%;
+}
+ul#feed-items li {
+  padding-bottom: 0.75em;
+}
+
+.entry .entry_tags { margin: 0; padding: 0; }
+.entry .entry_tags li { display: inline; }
+.entry .entry_tags li:after { content: ", "; }
+
+#filters {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 350px;
+    background: #fefefe;
+}
+#filters ul.groups {
+    list-style: none;
+    margin: 0; padding: 0.5em 0 0 0;
+}
+#filters ul.groups li.group {
+    margin: 0; padding: 0 0.5em 0.5em 0.5em;
+    clear: both;
+}
+#filters ul.groups li.group a.expand {
+    display: block;
+    float: left;
+    font-family: monospace;
+    font-size: 18px;
+    background-color: #ccc;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    text-decoration: none;
+    color: #333;
+}
+#filters ul.groups li.group label {
+    background: #f0f0f0; display: block;
+    padding: 0.5em 0.5em 0.5em 2.25em;
+}
+#filters ul.groups li.group label.hover {
+    font-weight: bold; 
+    cursor: pointer;
+    background: #ddd;
+}
+#filters ul.groups li.group label.hit {
+    background: #ffa;
+}
+#filters ul.groups li.group input {
+    float: left;
+    padding: 0; margin: 0.5em;
+}
+#filters li.group ul.sources {
+    list-style: none;
+    margin: 0.75em 0 0em 0; padding: 0;
+}
+#filters li.group ul.sources li.source {
+    margin: 0 2em 0 4em;
+    clear: both;
+}
+#filters li.group ul.sources li.source label {
+    background: transparent;
+    display: block;
+    margin: 0 0 0.5em 0; padding: 0.5em 0.25em 0.5em 2.25em;
+}
+#filters li.group ul.sources li.source label.hover {
+    background: #eee;
+}
+#filters li.group ul.sources li.source input {
+    float: left;
+    padding: 0; margin: 0.5em;
+}

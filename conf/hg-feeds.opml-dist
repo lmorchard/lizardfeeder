@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<opml version="1.1">
+  <head>
+    <title>Mercurial repositories at Mozilla</title>
+    <dateModified>Fri, 10 Oct 2008 00:58:33 GMT</dateModified>
+    <ownerName>l.m.orchard</ownerName>
+    <ownerEmail>lorchard@mozilla.com</ownerEmail>
+  </head>
+  <body>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ga-IE/atom-log" title="ga-IE Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ga-IE/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/zh-CN/atom-log" title="zh-CN Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/zh-CN/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ru/atom-log" title="ru Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ru/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ka/atom-log" title="ka Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ka/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /stack-scripts/atom-log" title="stack-scripts Changelog" xmlUrl="http://hg.mozilla.org/stack-scripts/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/nl/atom-log" title="nl Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/nl/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /comm-central/atom-log" title="comm-central Changelog" xmlUrl="http://hg.mozilla.org/comm-central/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/mr/atom-log" title="mr Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/mr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /mozilla-central/atom-log" title="mozilla-central Changelog" xmlUrl="http://hg.mozilla.org/mozilla-central/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/it/atom-log" title="it Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/it/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/nr/atom-log" title="nr Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/nr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/cs/atom-log" title="cs Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/cs/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/fy-NL/atom-log" title="fy-NL Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/fy-NL/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/sr/atom-log" title="sr Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/sr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ar/atom-log" title="ar Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ar/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ve/atom-log" title="ve Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ve/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/nn-NO/atom-log" title="nn-NO Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/nn-NO/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /libregion/atom-log" title="libregion Changelog" xmlUrl="http://hg.mozilla.org/libregion/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /www/contribute.mozilla.org/atom-log" title="contribute.mozilla.org Changelog" xmlUrl="http://hg.mozilla.org/www/contribute.mozilla.org/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ca/atom-log" title="ca Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ca/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/eo/atom-log" title="eo Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/eo/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/gl/atom-log" title="gl Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/gl/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/pt-BR/atom-log" title="pt-BR Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/pt-BR/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/mk/atom-log" title="mk Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/mk/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/zu/atom-log" title="zu Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/zu/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /oink-stack/atom-log" title="oink-stack Changelog" xmlUrl="http://hg.mozilla.org/oink-stack/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/mn/atom-log" title="mn Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/mn/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /ast/atom-log" title="ast Changelog" xmlUrl="http://hg.mozilla.org/ast/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/th/atom-log" title="th Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/th/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ts/atom-log" title="ts Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ts/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/sv-SE/atom-log" title="sv-SE Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/sv-SE/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/fi/atom-log" title="fi Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/fi/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/te/atom-log" title="te Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/te/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ss/atom-log" title="ss Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ss/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/si/atom-log" title="si Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/si/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/eu/atom-log" title="eu Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/eu/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/es-AR/atom-log" title="es-AR Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/es-AR/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/uk/atom-log" title="uk Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/uk/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ko/atom-log" title="ko Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ko/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /libqual/atom-log" title="libqual Changelog" xmlUrl="http://hg.mozilla.org/libqual/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /oink-scripts/atom-log" title="oink-scripts Changelog" xmlUrl="http://hg.mozilla.org/oink-scripts/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/he/atom-log" title="he Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/he/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/pl/atom-log" title="pl Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/pl/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/st/atom-log" title="st Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/st/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ja/atom-log" title="ja Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ja/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/pt-PT/atom-log" title="pt-PT Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/pt-PT/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /oink/atom-log" title="oink Changelog" xmlUrl="http://hg.mozilla.org/oink/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/sl/atom-log" title="sl Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/sl/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/da/atom-log" title="da Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/da/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/hy-AM/atom-log" title="hy-AM Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/hy-AM/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/oc/atom-log" title="oc Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/oc/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ro/atom-log" title="ro Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ro/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ta/atom-log" title="ta Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ta/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/pa-IN/atom-log" title="pa-IN Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/pa-IN/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/el/atom-log" title="el Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/el/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ku/atom-log" title="ku Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ku/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /hg_templates/atom-log" title="hg_templates Changelog" xmlUrl="http://hg.mozilla.org/hg_templates/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/id/atom-log" title="id Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/id/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ne-NP/atom-log" title="ne-NP Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ne-NP/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/nso/atom-log" title="nso Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/nso/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/sk/atom-log" title="sk Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/sk/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /projects/2007-configure-rewrite/atom-log" title="projects/2007-configure-rewrite Changelog" xmlUrl="http://hg.mozilla.org/projects/2007-configure-rewrite/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/is/atom-log" title="is Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/is/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/rw/atom-log" title="rw Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/rw/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/fr/atom-log" title="fr Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/fr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /incubator/embedding/atom-log" title="embedding Changelog" xmlUrl="http://hg.mozilla.org/incubator/embedding/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /platform-model/atom-log" title="platform-model Changelog" xmlUrl="http://hg.mozilla.org/platform-model/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/af/atom-log" title="af Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/af/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /tamarin-central/atom-log" title="tamarin-central Changelog" xmlUrl="http://hg.mozilla.org/tamarin-central/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /actionmonkey/atom-log" title="actionmonkey Changelog" xmlUrl="http://hg.mozilla.org/actionmonkey/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /labs/snowl/atom-log" title="snowl Changelog" xmlUrl="http://hg.mozilla.org/labs/snowl/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /webtools/mxr/atom-log" title="mxr Changelog" xmlUrl="http://hg.mozilla.org/webtools/mxr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/hi-IN/atom-log" title="hi-IN Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/hi-IN/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/bg/atom-log" title="bg Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/bg/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/hu/atom-log" title="hu Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/hu/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/en-GB/atom-log" title="en-GB Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/en-GB/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /build/buildbot-configs/atom-log" title="buildbot-configs Changelog" xmlUrl="http://hg.mozilla.org/build/buildbot-configs/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /elsa/atom-log" title="elsa Changelog" xmlUrl="http://hg.mozilla.org/elsa/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /tamarin-tracing/atom-log" title="tamarin-tracing Changelog" xmlUrl="http://hg.mozilla.org/tamarin-tracing/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/et/atom-log" title="et Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/et/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /graphs/atom-log" title="graphs Changelog" xmlUrl="http://hg.mozilla.org/graphs/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /webtools/despot/atom-log" title="despot Changelog" xmlUrl="http://hg.mozilla.org/webtools/despot/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/sq/atom-log" title="sq Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/sq/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/nb-NO/atom-log" title="nb-NO Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/nb-NO/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /build/tools/atom-log" title="tools Changelog" xmlUrl="http://hg.mozilla.org/build/tools/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/fa/atom-log" title="fa Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/fa/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/kn/atom-log" title="kn Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/kn/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/as/atom-log" title="as Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/as/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/lv/atom-log" title="lv Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/lv/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ml/atom-log" title="ml Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ml/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/en-ZA/atom-log" title="en-ZA Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/en-ZA/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /try/atom-log" title="try Changelog" xmlUrl="http://hg.mozilla.org/try/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/de/atom-log" title="de Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/de/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /tamarin-redux/atom-log" title="tamarin-redux Changelog" xmlUrl="http://hg.mozilla.org/tamarin-redux/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /smbase/atom-log" title="smbase Changelog" xmlUrl="http://hg.mozilla.org/smbase/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/xh/atom-log" title="xh Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/xh/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/be/atom-log" title="be Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/be/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/lt/atom-log" title="lt Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/lt/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/es-ES/atom-log" title="es-ES Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/es-ES/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /penelope/atom-log" title="penelope Changelog" xmlUrl="http://hg.mozilla.org/penelope/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/bn-IN/atom-log" title="bn-IN Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/bn-IN/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /pork-barrel/atom-log" title="pork-barrel Changelog" xmlUrl="http://hg.mozilla.org/pork-barrel/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /cvs-trunk-mirror/atom-log" title="cvs-trunk-mirror Changelog" xmlUrl="http://hg.mozilla.org/cvs-trunk-mirror/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /tracemonkey/atom-log" title="tracemonkey Changelog" xmlUrl="http://hg.mozilla.org/tracemonkey/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /mobile-browser/atom-log" title="mobile-browser Changelog" xmlUrl="http://hg.mozilla.org/mobile-browser/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/cy/atom-log" title="cy Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/cy/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/zh-TW/atom-log" title="zh-TW Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/zh-TW/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/tn/atom-log" title="tn Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/tn/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /dom-inspector/atom-log" title="dom-inspector Changelog" xmlUrl="http://hg.mozilla.org/dom-inspector/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /actionmonkey-tamarin/atom-log" title="actionmonkey-tamarin Changelog" xmlUrl="http://hg.mozilla.org/actionmonkey-tamarin/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/tr/atom-log" title="tr Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/tr/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/gu-IN/atom-log" title="gu-IN Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/gu-IN/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /elkhound/atom-log" title="elkhound Changelog" xmlUrl="http://hg.mozilla.org/elkhound/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /labs/weave/atom-log" title="weave Changelog" xmlUrl="http://hg.mozilla.org/labs/weave/atom-log"/>
+    <outline type="rss" text="Mercurial Activity for /l10n-central/ja-JP-mac/atom-log" title="ja-JP-mac Changelog" xmlUrl="http://hg.mozilla.org/l10n-central/ja-JP-mac/atom-log"/>
+  </body>
+</opml>

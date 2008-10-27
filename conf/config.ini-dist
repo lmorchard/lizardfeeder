@@ -1,0 +1,121 @@
+[Planet]
+name        = lizardfeeder
+link        = http://mozilla.org/
+owner_name  = l.m.orchard
+owner_email = lorchard@mozilla.com
+
+# log_level: One of DEBUG, INFO, WARNING, ERROR or CRITICAL
+log_level = INFO
+
+cache_directory    = ./data
+cache_keep_entries = 250
+
+output_theme = ../../themes/lizardfeeder
+output_dir   = ./htdocs
+
+[../../themes/lizardfeeder/filters/atom-to-json.py]
+page_filename = atom-page-%s.json
+
+[../../themes/lizardfeeder/filters/atom-date-pagination.py]
+page_filename = atom-%s.xml
+
+# This is large, but output templates should enforce time-wise limits
+items_per_page = 999
+
+# If non-zero, all feeds which have not been updated in the indicated
+# number of days will be marked as inactive
+activity_threshold = 90
+
+spider_threads = 24
+
+###########################################################################
+# subscription list
+###########################################################################
+
+[http://feeds.delicious.com/v2/rss/tag/mozilla?fancy=yes&count=15]
+name    = delicious.com/tag/mozilla
+short   = delicious-mozilla
+group   = bookmarks
+
+[http://feeds.delicious.com/v2/rss/popular/mozilla?fancy=yes&count=15]
+name    = delicious.com/popular/mozilla
+short   = delicious-mozilla-popular
+group   = bookmarks
+
+[http://api.flickr.com/services/feeds/photos_public.gne?tags=mozilla&lang=en-us&format=atom]
+name    = Photos tagged mozilla on flickr.com
+short   = flickr-mozilla
+group   = photos
+
+[http://search.twitter.com/search.atom?q=mozilla]
+name    = Tweets about Mozilla
+short   = twitter-mozilla
+group   = microblogs
+filters = ../../filters/omit-content.xslt
+
+[http://upcoming.yahoo.com/syndicate/v2/search_all/?q=mozilla&loc=&rt=1]
+name    = Mozilla on Upcoming
+short   = upcoming-mozilla
+group   = events
+
+[https://bugzilla.mozilla.org/buglist.cgi?chfieldfrom=2h&order=bugs.delta_ts+desc&ctype=atom]
+name    = Bugzilla activity
+short   = bugzilla
+group   = bugs
+filters = ../../filters/bugzilla.xslt
+
+[http://viewvc.svn.mozilla.org/vc/addons/?date=month&view=query&format=rss]
+name    = SVN activity
+short   = svn
+group   = code
+filters = ../../filters/viewvc-svn.xslt
+
+[http://bonsai.mozilla.org/cvsquery.cgi?branch=HEAD&dir=/mozilla/&date=month]
+name    = CVS activity
+short   = cvs
+group   = code
+
+[http://planet.mozilla.org/atom.xml]
+name    = Planet Mozilla
+short   = planet
+group   = blogs
+
+[https://wiki.mozilla.org/index.php?title=Special:RecentChanges&feed=rss]
+name    = MozillaWiki
+short   = wikimo
+group   = wiki
+
+[http://developer.mozilla.org/index.php?title=Special:Recentchanges&feed=rss]
+name    = MDC
+short   = devmo
+group   = wiki
+
+[https://labs.mozilla.com/forum/index.php?IgnoreDefaultPage=1&Feed=RSS2]
+name    = Labs Forum
+short   = labs-forum
+tags    = forums
+group   = discussions
+
+[http://quality.mozilla.org/rss.xml]
+name    = quality.mozilla.org
+short   = qmo
+group   = blogs
+
+[http://www.spreadfirefox.com/node/feed]
+name    = Spread Firefox
+short   = spreadfirefox
+group   = blogs
+
+[http://www.spreadfirefox.com/event/feed/all/all/]
+name    = Spread Firefox Events
+short   = spreadfirefoxevents
+group   = events
+
+[conf/hg-feeds.opml]
+content_type    = opml
+inherit_options = true
+name    = Mercurial Activity
+short   = mercurial
+group   = code
+tags    = hg
+filters = ../../filters/omit-content.xslt

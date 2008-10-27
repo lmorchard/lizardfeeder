@@ -1,0 +1,269 @@
+#content {
+	margin-right: 275px;
+}
+
+.divider {
+	height: 4px;
+	background: url(http://www.mozilla.com/img/tignish/about/divider.png) top left no-repeat;
+	clear: both;
+}
+
+#templates, .template { display: none }
+
+#main-feature h2 { font-size: 225% }
+
+/* {{{ Get Involved Page */
+
+#whats-happening #main-feature { 
+    min-height: 240px; 
+    background: transparent url(http://www.mozilla.com/img/tignish/about/background-whatismozilla.png) no-repeat 2.5em 3em;
+}
+
+#whats-happening #main-feature p { margin-bottom: 10px; }
+
+* html #whats-happening #main-feature { height: 215px; /* Hack for IE6 */ }
+
+#whats-happening #doc {
+	/*
+    background: url(http://www.mozilla.com/img/tignish/about/background-getinvolved.png) no-repeat 18px 200px;
+    */
+}
+
+#whats-happening #main-feature p { margin-right: 520px; }
+
+#whats-happening #content { margin-right: 275px; }
+
+#whats-happening .get-involved-list {
+	float: left;
+	width: 300px;
+}
+
+#whats-happening #easy.get-involved-list { margin-right: 35px; }
+
+#whats-happening .get-involved-list h5 {
+	color: #afaba3;
+	margin-top: 1em;
+}
+
+#whats-happening .get-involved-list li { margin-bottom: 5px; }
+
+#whats-happening h4.content-intro {
+	margin-right: 250px;
+	color: #807970;
+}
+
+#whats-happening #sidebar {
+    position: absolute;
+    right: 0; top: 365px;
+    width: 265px;
+    display: block;
+}
+
+#whats-happening #sidebar .sidebar-section {
+	background: url(http://www.mozilla.com/img/tignish/about/sidebar-background-whatismozilla.png) no-repeat top right;
+	padding-top: 1px;
+	padding-bottom: 20px;
+}
+#whats-happening #sidebar p {
+    margin: 0 35px 15px 15px;
+}
+
+#whats-happening #sidebar h3,
+#whats-happening #sidebar h4 {
+	margin: 20px 35px 15px 15px;
+}
+
+#whats-happening #sidebar ul {
+	margin: 0 15px 0 15px;
+}
+
+#whats-happening #sidebar ul li {
+	padding-bottom: 10px;
+	color: #999;
+}
+
+/* }}} */
+
+
+#feed-items {
+    list-style-type: none;
+    width: 620px;
+}
+#feed-items.paused { 
+}
+#feed-items li.entry {
+    background: none;
+    position: relative;
+    margin: 0 1em 0 17ex;
+    padding: 0 0 1.5em 0;
+}
+#feed-items li.entry .updated {
+}
+#feed-items li.entry .updated {
+}
+#feed-items li.entry .updated .date {
+}
+#feed-items li.entry .updated .time {
+}
+#feed-items li.entry .title {
+    font-size: 105%;
+    margin: 0; padding: 0;
+}
+#feed-items li.bug-status-resolved .title {
+    text-decoration: line-through;
+}
+#feed-items li.entry .link:before {
+    font-size: 80%;
+    padding: 0 0.25em 0 0.25em;
+    margin: 0 0.5em 0 0em;
+}
+#feed-items li.bug-status-assigned .link:before {
+    color: #111;
+    background: #cfc;
+    content: "\270D\00a0\00a0 assigned";
+}
+#feed-items li.bug-status-new .link:before {
+    color: #111;
+    background: #ff9;
+    content: "\2605\00a0\00a0new";
+}
+#feed-items li.bug-status-unconfirmed .link:before {
+    color: #333;
+    background: #ddd;
+    content: "?\00a0unconfirmed";
+}
+#feed-items li.entry .favicon {
+    padding-right: 0.25em;
+}
+#feed-items li.entry .link {
+    margin: 0; padding: 0;
+}
+#feed-items li.entry .tags {
+    display: none;
+    left: 0; margin: 0; padding: 0;
+}
+#feed-items li.entry .tags li { 
+    background: transparent;
+    display: inline;
+    margin: 0; padding: 0;
+}
+#feed-items .entry .group {
+    position: absolute;
+    top: 0em;
+    left: -16ex;
+    width: 14ex;
+    text-align: right;
+}
+#feed-items .entry .group span { 
+    padding: 0.125em 0.5em;
+    background: #dfd;
+    border: 1px #ddd solid;
+}
+
+#whats-happening #filters {
+}
+
+#whats-happening #filters ul.groups {
+    list-style: none;
+    margin: 0 0 0 1.5em; 
+    padding: 0.5em 0 0 0;
+}
+#whats-happening #filters ul.groups li.group {
+    margin: 0; 
+    padding: 0 0.5em 0.5em 0.5em;
+    background: transparent;
+    clear: both;
+}
+#whats-happening #filters ul.groups li.group a.expand {
+    display: block;
+    float: left;
+    font-family: monospace;
+    font-size: 18px;
+    background-color: #eee;
+    margin: 0.125em 0.125em 0.125em 0.125em;
+    padding: 0.125em 0.25em 0.125em 0.25em;
+    text-decoration: none;
+    color: #333;
+}
+#whats-happening #filters ul.groups li.group label {
+    display: block;
+    padding: 0.5em 0.5em 0.5em 2.25em;
+}
+#whats-happening #filters ul.groups li.group label.hover {
+    cursor: pointer;
+}
+#whats-happening #filters ul.groups li.group label.hit {
+    background: #ffa;
+}
+#whats-happening #filters ul.groups li.group input {
+    float: left;
+    padding: 0; margin: 0.5em;
+}
+#whats-happening #filters li.group ul.sources {
+    list-style: none;
+    margin: 0.5em 0 0em 0; padding: 0;
+    font-size: 90%;
+}
+#whats-happening #filters li.group ul.sources li.source {
+    background: transparent;
+    margin: 0 0.5em 0 1.75em;
+    padding: 0;
+    clear: both;
+}
+#whats-happening #filters li.group ul.sources li.source label {
+    background: transparent;
+    display: block;
+    margin: 0 0 0em 0; 
+    padding: 0.5em 0.25em 0.5em 2em;
+}
+#whats-happening #filters li.group ul.sources li.source label.hover {
+    background: #eee;
+}
+#whats-happening #filters li.group ul.sources li.source input {
+    float: left;
+    padding: 0; margin: 0.5em;
+}
+
+#whats-happening #filters .filter label span.count {
+    padding: 0 0 0 0.25em;
+}
+#whats-happening #filters .filter label span.count:before {
+    content: "(";
+}
+#whats-happening #filters .filter label span.count:after {
+    content: ")";
+}
+
+#whats-happening #filters .filter label span.name, #feed-items .entry .group span { 
+    padding: 0.125em 0.5em;
+    background: #dfd;
+    border: 1px #ddd solid;
+}
+#whats-happening #filters .group-events label span.name, #feed-items .group-events .group span { 
+    background: #fff; color: #000; border-top: 2px solid #f00;
+}
+#whats-happening #filters .group-bugs label span.name, #feed-items .group-bugs .group span { 
+    background: #f11; color: #fff;
+}
+#whats-happening #filters .group-wiki label span.name, #feed-items .group-wiki .group span { 
+    background: #346; color: #fff;
+}
+#whats-happening #filters .group-code label span.name, #feed-items .group-code .group span { 
+    background: #111; color: #0f0;
+    font-family: monospace;
+}
+#whats-happening #filters .group-bookmarks label span.name, #feed-items .group-bookmarks .group span { 
+    background: #135bc9; color: #fff;
+}
+#whats-happening #filters .group-discussions label span.name, #feed-items .group-discussions .group span { 
+    background: #eee; color: #023;
+}
+#whats-happening #filters .group-microblogs label span.name, #feed-items .group-microblogs .group span { 
+    background: #fff; color: #0cf;
+}
+#whats-happening #filters .group-blogs label span.name, #feed-items .group-blogs .group span { 
+    background: #f81; color: #fff;
+}
+#whats-happening #filters .group-photos label span.name, #feed-items .group-photos .group span { 
+    background: #fff; color: #47b; border-bottom: 1px solid #d49;
+}

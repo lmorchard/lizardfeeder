@@ -1,0 +1,209 @@
+#!/usr/bin/env python
+"""
+"""
+import sys, os
+import xml.dom, xml.dom.minidom
+from StringIO import StringIO
+from xml.dom.minidom import parse, parseString, Node
+from subprocess import Popen, PIPE
+
+# Find library locations relative to the working dir.
+base_dir = os.getcwd()
+sys.path.extend([ os.path.join(base_dir, d) for d in 
+    ( 'lib', 'extlib', 'venus', 'venus/planet/vendor' ) 
+])
+
+ATOM_NS = 'http://www.w3.org/2005/Atom'
+
+def getUpdatedTimeIndex(updated):
+    """From the updated time of an entry, derive the index string for grouping"""
+    return updated[0:13].replace('-','/').replace(':','/').replace('T','/')
+
+def main():
+    """ """
+    args = dict(zip([name.lstrip('-') for name in sys.argv[1::2]], sys.argv[2::2]))
+
+    output_dir      = 'htdocs/archives'
+    output_fn_tmpl  = '%s.xml'
+    output_url_tmpl = '%s.xml'
+    rel_path        = '../../..'
+
+    # Parse the incoming piped feed.
+    doc  = xml.dom.minidom.parseString(sys.stdin.read())
+    feed = doc.firstChild
+
+    # Group entries by time index and remove from incoming feed.
+    entry_pages = { }
+    entries = findall(feed, 'entry')
+    for entry in entries:
+        updated = findtext(entry, 'updated')
+        idx = getUpdatedTimeIndex(updated)
+        if idx not in entry_pages: 
+            entry_pages[idx] = []
+        entry_pages[idx].append(entry)
+        feed.removeChild(entry)
+
+    # Produce separate feeds out of the pages of time-grouped entries.
+    entry_keys = entry_pages.keys()
+    entry_keys.sort(reverse=True)
+    feed_pages, prev_idx = { }, None
+    for idx in entry_keys:
+
+        output_url = output_url_tmpl % idx
+        output_fn  = '%s/%s' % ( output_dir, output_fn_tmpl % idx )
+        
+        if os.path.exists(output_fn):
+            # There's already a feed for this time page, so load it up to merge
+            # in potentially new entries
+            page_doc     = xml.dom.minidom.parse(output_fn)
+            page_feed    = page_doc.firstChild
+            page_entries = findall(page_feed, 'entry')
+            entry_ids    = [ findtext(x, 'id') for x in page_entries ]
+        else:
+            # No feed for this time page yet, so create a new one.
+            page_doc     = doc
+            page_feed    = feed.cloneNode(True)
+            page_entries = []
+            entry_ids    = []
+
+        # Run through the entries for this page.
+        entries = entry_pages[idx]
+        for entry in entries:
+            # If the entry is not already found in the current time page,
+            # insert it.
+            if findtext(entry, 'id') not in entry_ids:
+                if len(page_entries):
+                    page_feed.insertBefore(entry, page_entries[0])
+                else:
+                    page_feed.appendChild(entry)
+
+        # Add the current time page to the working set.
+        feed_pages[idx] = page_feed
+
+        # If there's a previous page on hand, update next/prev links between
+        # the current and previous pages.
+        if prev_idx in feed_pages:
+
+            # Dig up the self/next/previous links for the current 
+            # and previous pages.
+            links = { 
+                'curr': getFeedLinks(page_doc, page_feed),
+                'prev': getFeedLinks(page_doc, feed_pages[prev_idx])
+            }
+
+            # Finally, update the link relationships between the current and
+            # previous entries.
+            links['curr']['previous'] \
+                .setAttribute('href', '%s/%s' % ( rel_path, output_fn_tmpl % prev_idx ) )
+            links['prev']['next'] \
+                .setAttribute('href', '%s/%s' % ( rel_path, output_url) )
+
+            # TODO: Make this work, but with an absolute URL
+            #links['curr']['self'] \
+            #    .setAttribute('href', '%s/%s' % ( rel_path, output_url) )
+
+        # Now, remember the current page as the previous page for the next
+        # iteration.
+        prev_idx = idx
+
+    # Finally, write out all the time based pages to files.
+    for idx in entry_keys:
+        output_fn = '%s/%s' % ( output_dir, output_fn_tmpl % idx )
+
+        # Ensure the output file directory path exists
+        output_fn_dir = os.path.dirname(output_fn)
+        if not os.path.exists(output_fn_dir): 
+            os.makedirs(output_fn_dir)
+        
+        # Write the current page as XML out to a file.
+        writeFeed(open(output_fn, 'w'), feed_pages[idx])
+
+    # Remove the relative part of links in the first feed page, then write it
+    # to disk as the current index.
+    if len(feed_pages):
+        index_feed  = feed_pages[entry_keys[0]]
+        index_links = getFeedLinks(doc, index_feed)
+        for rel in index_links.keys():
+            link = index_links[rel]
+            href = link.getAttribute('href').replace('%s/' % rel_path, '')
+            link.setAttribute('href', href)
+
+        output_fn = '%s/%s' % ( output_dir, output_fn_tmpl % 'index' )
+        writeFeed(open(output_fn, 'w'), index_feed)
+
+def writeFeed(file, feed):
+    """
+    Write a feed out to the given file object, attempting to use xmllint to
+    tidy up first.
+    """
+    try:
+        # HACK: The feed XML looks a bit nasty here after all the transformations,
+        # so attempt a quick pass though xmllint to tidy things up
+        lint = Popen( 
+            ('xmllint', '--format','-'), 
+            stdin=PIPE, 
+            stdout=file 
+        )
+        lint.stdin.write(feed.toxml('utf-8'))
+    except Exception, e:
+        # If the above fails, assume it's because xmllint didn't work and try
+        # writing the ugly version.
+        file.write(feed.toxml('utf-8'))
+
+def findall(parent, name, ns=ATOM_NS):
+    """
+    Given a parent node, attempt to find children with the given 
+    node name.
+    """
+    return [ 
+        node for node in parent.childNodes
+        if node.nodeType == Node.ELEMENT_NODE and \
+            node.nodeName == name
+    ]
+
+def find(parent, name, ns=ATOM_NS):
+    """
+    For the given parent and node name, attempt to find the 
+    first node.
+    """
+    nodes = findall(parent, name, ns)
+    return len(nodes) and nodes[0] or None
+
+def findtext(parent, name, ns=ATOM_NS):
+    """
+    Find the text for the first named node from the given parent.
+    """
+    node = find(parent, name, ns)
+    return node and node.firstChild.nodeValue or None
+
+def getFeedLinks(doc, feed):
+    """
+    For the given document and feed, attempt to dig up the Atom pagination 
+    links.  The links will be created if not already present.
+    """
+    rels  = ( 'self', 'next', 'previous' )
+    links = {}
+
+    for link in findall(feed, 'link'):
+        for rel in rels:
+            if link.getAttribute('rel') == rel:
+                links[rel] = link
+    
+    # Check to see if the desired links were found.
+    for rel in rels:
+        if not rel in links or not links[rel]:
+            # The link wasn't found in the page, so 
+            # create a new one.
+            link = doc.createElement('link')
+            link.setAttribute('rel', rel)
+            links[rel] = link
+        else:
+            link = links[rel]
+            feed.removeChild(link)
+
+        # Ensure the links stay at the top of the feed.
+        feed.insertBefore(link, feed.firstChild)
+
+    return links
+
+if __name__ == '__main__': main()

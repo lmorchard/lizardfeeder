@@ -1,0 +1,23 @@
+Index: lizardfeeder/venus/planet/config.py
+===================================================================
+--- lizardfeeder.orig/venus/planet/config.py	2008-10-17 09:46:49.000000000 -0400
++++ lizardfeeder/venus/planet/config.py	2008-10-20 15:56:16.000000000 -0400
+@@ -271,6 +271,18 @@
+ 
+         if callback: callback(data, cached_config)
+ 
++        # If the inherit_options option of the list section is true, apply most
++        # options in the list section to the feeds in the reading list.
++        if cached_config.has_option(list, 'inherit_options') \
++                and cached_config.getboolean(list, 'inherit_options'):
++            for sect in cached_config.sections():
++                if sect == list: continue
++                for key, value in options.iteritems():
++                    if key in ('inherit_options', 'content_type'): 
++                        continue
++                    if not cached_config.has_option(sect, key):
++                        cached_config.set(sect, key, value)
++
+         # write to cache
+         if use_cache:
+             cache = open(cache_filename, 'w')

@@ -1,0 +1,37 @@
+= Lizardfeeder v0.0 =
+
+A firehose feed aggregator for the Mozilla community
+http://people.mozilla.com/~lorchard/lizardfeeder/
+lorchard@mozilla.com
+
+== Installation ==
+
+# Unpack the source distribution for Planet Venus
+tar -zxf venus.tar.gz
+
+# Or, to get the latest revision of Planet Venus:
+# bzr get http://intertwingly.net/code/venus
+
+# Apply a patch that has yet to be submitted to Venus upstream
+patch -p1 < patches/venus-apply-reading-list-options.patch
+
+# Create a local config, optionally edit it.
+cp conf/config.ini-dist conf/config.conf
+cp conf/hg-feeds.opml-dist conf/hg-feeds.opml
+
+== Usage ==
+
+# For a full run, expunge / spider / splice
+./run.sh
+
+# Fetch all subscribed feeds
+./venus/spider.py ./conf/config.ini
+
+# Rebuild output from cached data
+./venus/splice.py ./conf/config.ini
+
+# Expunge old entries from data cache
+./venus/expunge.py ./conf/config.ini
+
+# To run periodically without crontab (handy for development)
+./tools/loop-run.sh
