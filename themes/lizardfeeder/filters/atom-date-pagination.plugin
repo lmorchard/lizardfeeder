@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """
+Tee-style filter which accepts an atom feed and splits it out into date-based
+accumulated archives.
 """
 import sys, os
 import xml.dom, xml.dom.minidom
