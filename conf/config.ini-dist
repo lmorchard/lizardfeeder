@@ -42,9 +42,9 @@ name    = delicious.com/popular/mozilla
 short   = delicious-mozilla-popular
 group   = bookmarks
 
-[http://api.flickr.com/services/feeds/photos_public.gne?tags=mozilla&lang=en-us&format=atom]
-name    = Photos tagged mozilla on flickr.com
-short   = flickr-mozilla
+[htdocs/mozilla-flickr-search.xml]
+name    = Mozilla Flickr Search
+short   = mozillaflickrsearch
 group   = photos
 
 [http://search.twitter.com/search.atom?q=mozilla]

@@ -170,14 +170,11 @@
                                         entry_classes.append('bug-resolution-'+tags['bugzilla:resolution'].lower())
                                 ?>
                                 <li class="${' '.join(entry_classes)}">
-
                                     <div class="group"><span>${group}</span></div>
-
                                     <h4 class="title">
                                         <img class="favicon" src="${favicon}" />
                                         <a class="link" href="${entry.link}">${entry.title}</a>
                                     </h4>
-
                                     <div class="updated">
                                         <span class="timeago" title="${entry.updated}">${entry.updated}</span> — 
                                         <span class="time">${time.strftime('%I:%M %p', entry.updated_parsed)}</span>
@@ -185,13 +182,6 @@
                                         <span class="date" py:if="not is_today">${time.strftime('%Y %b %d', entry.updated_parsed)}</span>
                                         — <span class="author">${entry.author or 'n/a'}</span>
                                     </div>
-
-                                    <ul class="tags">
-                                        <li py:for="name, value in tags.iteritems()">
-                                            <span>${name}</span>=<span>${value}</span>
-                                        </li>
-                                    </ul>
-
                                 </li>
                             </py:for> 
 
