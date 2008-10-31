@@ -13,9 +13,7 @@ window.Lizardfeeder_Main = (function(){
             feed_url:           
                 'atom.json',
             max_entries:
-                150,
-            expected_update_period:
-                10 * 60 * 1000, // 10 minutes
+                50,
             feed_check_delay:   
                 30 * 1000, // 30 seconds
             last_time_start:    
@@ -30,117 +28,58 @@ window.Lizardfeeder_Main = (function(){
 
             this.paused = false;
             this.time_factor = 1;
-            this.setupSession();
+            this.session = {
+                source_filters: {}
+            };
 
             $(document).ready($.hitch(this, function() {
+
+                $('#feed-items')
+                    .hover(
+                        // Set up handlers to try pausing the flow on mouse-over.
+                        function() { $(this).addClass('paused'); that.paused = true },
+                        function() { $(this).removeClass('paused'); that.paused = false }
+                    )
+                    .find('.entry:first .updated .timeago').each(function() {
+                        // Set last update time to update time of the first entry.
+                        that.session.last_time = 
+                            $.parseISO8601( this.getAttribute('title') );
+                    });
+            
+                // Set up the checkbox filters, attach hover and click events.
+                $('.filters')
+                    .change(function(e) { 
+                        that.handleFilterChange($(e.target));
+                    })
+                    .find('input[type=checkbox]')
+                        .attr('checked', true)
+                    .end()
+                    .find('label')
+                        .hover(
+                            function() { $(this).addClass('hover') },
+                            function() { $(this).removeClass('hover') }
+                        )
+                        .click(function(e) {
+                            $(this).prev().each(function() {
+                                this.checked = !this.checked;
+                                that.handleFilterChange($(this));
+                            })
+                        })
+                    .end();
 
                 // Eschew timeago's built-in per-call interval call and setup a
                 // global periodic time refresh.
                 $.timeago.settings.refreshMillis = 0;
-                $.periodical(this, function() { 
+                (function() { 
                     $('*[class*=timeago]').timeago(); 
-                }, 60 * 1000);
+                    setTimeout(arguments.callee, 60 * 1000);
+                })();
 
-                // Set up a handler to try pausing the flow on mouse-over.
-                $('#feed-items').hover(
-                    function() { $(this).addClass('paused'); that.paused = true; },
-                    function() { $(this).removeClass('paused'); that.paused = false; }
-                );
-            
-                // Kick things off by fetching the list of sources and
-                // starting the first feed check after that.
-                $.getJSON(
-                    this.config.sources_url + '?__=' + (new Date().getTime()), 
-                    $.hitch(this, function(sources) {
-                        this.setupSources(sources);
-                        this.checkFeed();
-                    })
-                );
-
+                // Kick off the first feed check.
+                this.checkFeed();
             }));
 
             return this;
-        },
-
-        /**
-         * Set up the variables for this session.
-         */
-        setupSession: function() {
-            // TODO: Manage this in a cookie?
-            this.session = {};
-
-            if (!this.session.source_filters) {
-                this.session.source_filters = {};
-            }
-
-            /*
-            if (!this.session.last_time) {
-                var last_time = new Date();
-                last_time.setTime( last_time.getTime() - this.config.last_time_start );
-                this.session.last_time = last_time;
-            }
-            */
-        },
-
-        /**
-         * Set up the UI with the list of sources as filters.
-         */
-        setupSources: function(sources) {
-            var that = this;
-            this.sources = sources;
-
-            // Collate the sources into groups.
-            var groups = {};
-            $.each(sources, function() {
-                if (this.group) {
-                    if (!groups[this.group]) 
-                        groups[this.group] = [];
-                    groups[this.group].push(this);
-                }
-            });
-            
-            // Populate the filter groups from the collated sources.
-            var ele = $('#filters > ul.template')
-                .taltemplate({
-                    groups: $.keys(groups).sort().map(function(group_name) {
-                        return {
-                            name: group_name,
-                            sources: groups[group_name]
-                        };
-                    })
-                })
-                .removeClass('template');
-
-            // Accordionify the source filters list.
-            $('#filters .group .sources').hide();
-            $('#filters .group a.expand')
-                .click(function(e) {
-                    $(this).siblings('.sources').toggle('fast');
-                    return false;
-                });
-            $('#filters label')
-                .hover(
-                    function() { $(this).addClass('hover') },
-                    function() { $(this).removeClass('hover') }
-                )
-
-            // Clicks on labels toggle checkboxes and update filters.
-            $('#filters label')
-                .click(function(e) {
-                    $(this).prev().each(function() {
-                        this.checked = !this.checked;
-                        that.handleFilterChange($(this));
-                    })
-                });
-            
-            // Event delegation to handle checkbox clicks in filters.
-            $('#filters').change(function(e) { 
-                that.handleFilterChange($(e.target));
-            });
-
-            // TODO: Retain checkbox status in a cookie session?
-            $('#filters input[type=checkbox]').attr('checked', true);
-
         },
 
         /**
@@ -207,11 +146,7 @@ window.Lizardfeeder_Main = (function(){
                         $.parseISO8601(feed.entry_pages[feed.entry_pages.length-1].end_time);
 
                     if (!this.session.last_time) {
-                        this.time_factor = -1;
-                        this.session.last_time = //$.parseISO8601(feed.entry_pages[0].end_time);
-                            $.parseISO8601(feed.entry_pages[feed.entry_pages.length-1].end_time);
-                    } else {
-                        this.time_factor = this.calculateTimeFactor();
+                        this.session.last_time = $.parseISO8601(feed.entry_pages[0].end_time);
                     }
 
                     this.loadNextPage();
@@ -305,64 +240,66 @@ window.Lizardfeeder_Main = (function(){
          * Add the given entry to the page layout.
          */
         addEntryToPage: function(entry, tags) {
+            
+            var bug_status     = tags['bugzilla:bug_status'],
+                bug_resolution = tags['bugzilla:resolution'],
+                entry_updated  = $.parseISO8601(entry.updated),
+                domain         = entry.link.split('/')[2];
 
-            // Clone and populate a new instance of the template.
-            var new_item = $('#feed-items .template')
+            var favicon = (domain == 'bugzilla.mozilla.org') ?
+                'https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png' :
+                'http://www.google.com/s2/favicons?domain=' + domain;
+
+            var entry_classes = [
+                'entry',
+                'group-'+tags['group'], 
+                'short='+tags['short'],
+                ( bug_status     ? 
+                    'bug-status-' + bug_status.toLowerCase() : '' ),
+                ( bug_resolution ?
+                    'bug-resolution-' + bug_resolution.toLowerCase() : '' )
+            ];
+
+            // Clone and populate a new entry.
+            var new_item = $('#feed-items .entry:last')
                 .clone()
-                .taltemplate({
-                    time:   $.parseISO8601(entry.updated),
-                    author: entry.author || 'n/a',
-                    title:  entry.title,
-                    href:   entry.link,
-                    domain: entry.link.split('/')[2],
-                    tags:   tags
-                })
-                .removeClass('template')
+                .attr('class', entry_classes.join(' ')) 
+                .find('.group span')
+                    .text(tags['group'])
+                .end()
+                .find('.title')
+                    .find('.favicon')
+                        .attr('src', favicon)
+                    .end()
+                    .find('.link')
+                        .attr('href', entry.link)
+                        .text(entry.title)
+                    .end()
+                .end()
+                .find('.updated')
+                    .find('.timeago')
+                        .attr('title', entry.updated)
+                        .text(entry_updated.strftime('%+'))
+                        .timeago()
+                    .end()
+                    .find('.time')
+                        .text(entry_updated.strftime('%I:%M %p'))
+                    .end()
+                .end()
+                .find('.author')
+                    .text(entry.author || 'n/a')
+                .end()
                 .prependTo('#feed-items')
                 .hide();
 
             // If this entry is not filtered, display it.
             if (this.session.source_filters[tags['short']] !== false) {
-                new_item.find('*[class*=timeago]').timeago();
-                if (this.time_factor > 0 && this.time_factor <= 20)  {
-                    // Flash the group and source associated with the new entry
-                    $('#filters .source > label[for=' + tags['short'] + ']')
-                        .effect('highlight', {}, 250);
-                    $('#filters .group > label[for=' + tags['group'] + ']')
-                        .effect('highlight', {}, 250);
-                    new_item.show('fast');
-                } else {
-                    new_item.show();
-                }
+                new_item.show('fast');
             }
 
             // If there are too many entries on the page, remove from the end.
-            var all_entries = $('#feed-items .entry').filter(':not(.template)');
-            if (all_entries.length > this.config.max_entries) {
-                all_entries.eq(all_entries.length - 1).hide().remove();
-            }
-            
-            /*
-            var group_count = 
-                $('#filters .group > label[for=' + tags['group'] + '] .count');
-            group_count.text( parseInt(0 + group_count.text()) + 1 );
-            */
-        },
-
-        /**
-         * Calculate a time factor for page updates that hopefully gets things
-         * caught up in time for the next expected update.
-         */
-        calculateTimeFactor: function() {
-            var last_time = 
-                    Math.max(this.session.last_time.getTime(), this.end_time.getTime()),
-                available_duration = 
-                    this.start_time.getTime() - last_time,
-                catchup_duration =
-                    (this.start_time.getTime() + this.config.expected_update_period) - ( new Date().getTime() );
-
-            var out = available_duration / catchup_duration;
-            return (out < 0) ? 50 : ( (out > 50 ) ? 50 : out );
+            $('#feed-items .entry:gt(' + (this.config.max_entries-1) + ')')
+                .remove();
         },
 
         /**

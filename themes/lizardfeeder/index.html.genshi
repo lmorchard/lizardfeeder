@@ -1,37 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" dir="ltr"
-    xmlns:tal="http://decafbad.com/#tal">
+      xmlns:py="http://genshi.edgewall.org/" xmlns:tal="http://decafbad.com/#tal">
+
+    <?python
+        import time
+    ?>
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>What's Happening | Mozilla</title>
+
         <link rel="shortcut icon" href="http://www.mozilla.com/favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="http://www.mozilla.com/js/util.js"></script>
+        <link rel="alternate" type="application/atom+xml" title="Atom archives" href="archives/index.xml" />
+        <link rel="outline" type="text/xml+opml" title="Feeds" href="sources.opml" />
+
+        <script type="text/javascript" src="http://www.mozilla.com/js/util.js">/**/</script>
         <link rel="stylesheet" type="text/css" href="http://www.mozilla.com/includes/yui/2.5.1/reset-fonts-grids/reset-fonts-grids.css" />
         <link rel="stylesheet" type="text/css" href="http://www.mozilla.com/includes/yui/2.5.1/menu/assets/skins/sam/menu.css" />
         <link rel="stylesheet" type="text/css" href="http://www.mozilla.com/style/tignish/template.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="http://www.mozilla.com/style/tignish/content.css" media="screen" />
-        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/yahoo-dom-event/yahoo-dom-event.js"></script>
-        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/container/container_core-min.js"></script>
-        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/menu/menu-min.js"></script>
-        <script type="text/javascript" src="http://www.mozilla.com/js/mozilla-menu.js"></script>
+        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/yahoo-dom-event/yahoo-dom-event.js">/**/</script>
+        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/container/container_core-min.js">/**/</script>
+        <script type="text/javascript" src="http://www.mozilla.com/includes/yui/2.5.1/menu/menu-min.js">/**/</script>
+        <script type="text/javascript" src="http://www.mozilla.com/js/mozilla-menu.js">/**/</script>
         <link rel="stylesheet" type="text/css" href="css/mozilla-lizardfeeder.css" media="screen" />
 
-        <link rel="alternate" type="application/atom+xml" title="Atom full" href="atom.xml" />
-        <link rel="outline" type="text/xml+opml" title="Feeds" href="sources.opml" />
-        <!--
-        <link href="css/main.css" rel="stylesheet" type="text/css" media="screen" />
-        -->
-        <script src="js/sugar-arrays-min.js" type="text/javascript"></script>
-        <script src="js/jquery-1.2.6.min.js" type="text/javascript"></script>
-        <script src="js/jquery-ui-personalized-1.6rc2.min.js" type="text/javascript"></script>
-        <script src="js/jquery.timeago.js" type="text/javascript"></script>
-        <script src="js/jquery.taltemplate.js" type="text/javascript"></script>
-        <script src="js/strftime.js" type="text/javascript"></script>
-        <script src="js/lmo-utils.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/sugar-arrays-min.js" type="text/javascript">/**/</script>
+        <script src="js/jquery-1.2.6.min.js" type="text/javascript">/**/</script>
+        <script src="js/jquery-ui-personalized-1.6rc2.min.js" type="text/javascript">/**/</script>
+        <script src="js/jquery.timeago.js" type="text/javascript">/**/</script>
+        <script src="js/jquery.taltemplate.js" type="text/javascript">/**/</script>
+        <script src="js/strftime.js" type="text/javascript">/**/</script>
+        <script src="js/lmo-utils.js" type="text/javascript">/**/</script>
+        <script src="js/main.js" type="text/javascript">/**/</script>
 
     </head>
 
@@ -128,15 +130,92 @@
 
                     <hr class="hide" />
 
-                    <div id="main-feature">
-                        <h2>What's Happening at Mozilla?</h2>
-                        <p>We’re a global community working together to make the Web a better place for everyone.</p>
-                    </div>
+                    <div id="content">
+                        
+                        <div id="intro">
+                            <h2>What's happening at Mozilla?</h2>
+                            <!--!
+                            <p>Watch this page to get a look at the activity
+                            brewing around the Mozilla community.</p>
+                            -->
+                        </div>
+
+                        <ul id="feed-items">
+                            <py:for each="entry in entries">
+                                <?python
+                                    is_today = (time.gmtime()[0:3] == entry.updated_parsed[0:3])
+
+                                    group = entry.source['config']['group']
+                                    short = entry.source['config']['short'] 
+                                    entry_classes = [ 'entry', 'group-'+group, 'short-'+short ]
+
+                                    domain = entry.link.split('/')[2]
+                                    if domain == 'bugzilla.mozilla.org':
+                                        favicon = 'https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png'
+                                    else:
+                                        favicon = 'http://www.google.com/s2/favicons?domain=' + domain
+
+                                    try:
+                                        tags = dict([ 
+                                            (x['term']+'=True').split('=')[0:2] 
+                                            for x in dict(entry)['tags'] 
+                                        ])
+                                    except Exception:
+                                        tags = {}
+
+                                    if 'bugzilla:bug_status' in tags:
+                                        entry_classes.append('bug-status-'+tags['bugzilla:bug_status'].lower())
+
+                                    if 'bugzilla:resolution' in tags:
+                                        entry_classes.append('bug-resolution-'+tags['bugzilla:resolution'].lower())
+                                ?>
+                                <li class="${' '.join(entry_classes)}">
+
+                                    <div class="group"><span>${group}</span></div>
+
+                                    <h4 class="title">
+                                        <img class="favicon" src="${favicon}" />
+                                        <a class="link" href="${entry.link}">${entry.title}</a>
+                                    </h4>
+
+                                    <div class="updated">
+                                        <span class="timeago" title="${entry.updated}">${entry.updated}</span> — 
+                                        <span class="time">${time.strftime('%I:%M %p', entry.updated_parsed)}</span>
+                                        <span py:if="not is_today"> — </span>
+                                        <span class="date" py:if="not is_today">${time.strftime('%Y %b %d', entry.updated_parsed)}</span>
+                                        — <span class="author">${entry.author or 'n/a'}</span>
+                                    </div>
+
+                                    <ul class="tags">
+                                        <li py:for="name, value in tags.iteritems()">
+                                            <span>${name}</span>=<span>${value}</span>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            </py:for> 
+
+                            <li class="template entry">
+                                <div class="group"><span>bugs</span></div>
+                                <h4 class="title">
+                                    <img class="favicon" src="https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png" />
+                                    <a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=8675309">Some random bug</a>
+                                </h4>
+                                <div class="updated">
+                                    <span class="timeago" title="2008-10-31T15:02:45Z">34 minutes ago</span> — 
+                                    <span class="time">03:01 PM</span> -
+                                    <span class="author">Some Author</span>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div><!-- end #content div -->
 
                     <ul id="side-menu">
                         <li class="first"><h3><a href="http://www.mozilla.com/en-US/about/">About</a></h3></li>
                         <li><a href="http://www.mozilla.com/en-US/about/whatismozilla.html">What is Mozilla?</a></li>
-                        <li><span>Get Involved</span></li>
+                        <li><a href="http://www.mozilla.com/en-US/about/get-involved.html">Get Involved</a></li>
                         <li><a href="http://www.mozilla.com/en-US/press/">Press Center</a></li>
                         <li><a href="http://www.mozilla.com/en-US/about/careers.html">Careers</a></li>
                         <li><a href="http://www.mozilla.com/en-US/about/partnerships.html">Partnerships</a></li>
@@ -147,120 +226,27 @@
                         <li><a href="http://www.mozilla.com/en-US/about/contact.html">Contact Us</a></li>
                     </ul>
 
-                    <div id="sidebar">
-
-                        <div class="sidebar-section">
-                            <h3>Sources:</h3>
-
-                            <p>Use the checkboxes to hide or show feed items from the sources listed below.</p>
-
-                            <form id="filters">
-                                <ul class="template groups">
-
-                                    <li class="filter group"
-                                        tal:repeat="group groups"
-                                        tal:attributes="class string:filter group group-${group/name}">
-
-                                        <a href="#" class="expand">+</a>
-                                        <input type="checkbox" name="groupname" 
-                                            tal:attributes="name group/name" />
-                                        <label for="groupname" 
-                                            tal:attributes="for group/name">
-                                            <span class="name" tal:content="group/name">Group name</span>
-                                        </label>
-
-                                        <ul class="sources">
-                                            <li class="source" tal:repeat="source group/sources">
-                                                <input type="checkbox" name="groupname" 
-                                                    tal:attributes="name source/short" />
-                                                <label for="groupname" 
-                                                    tal:attributes="for source/short" 
-                                                    tal:content="source/name">Group name</label>
-                                            </li>
-                                        </ul>
-
-                                    </li>
-
-                                </ul>
-                            </form>
-                        </div>
-
-                        <div class="sidebar-section">
-                            <h3>Status:</h3>
-
-                            <dl id="status">
-                                <dt>Time factor</dt>
-                                    <dd id="time-factor">...</dd>
-                                <dt>Start</dt>
-                                    <dd id="start-time">...</dd>
-                                <dt>Current</dt>
-                                    <dd id="last-time">...</dd>
-                                <dt>End</dt>
-                                    <dd id="end-time">...</dd>
-                            </dl>
-                        </div>
-
-                    </div>
-
-                    <div id="content">
-
-                        <ul id="feed-items">
-
-                            <li class="template entry group-bugs short-bugzilla" 
-                                tal:define="
-                                    bug_status      path:tags/bugzilla:bug_status;
-                                    bug_resolution  path:tags/bugzilla:resolution;
-                                "
-                                tal:attributes="
-                                    class js:'entry group-' + tags.group + ' short-' + tags.short +
-                                        ( bug_status      ? ' bug-status-' + bug_status.toLowerCase() : '' ) + 
-                                        ( bug_resolution  ? ' bug-resolution-' + bug_resolution.toLowerCase() : '' )
-                                ">
-
-                                <div class="group"><span tal:content="tags/group">bugs</span></div>
-                                <h4 class="title">
-
-                                    <img class="favicon" src="http://www.google.com/s2/favicons?domain=mozilla.com"
-                                        tal:condition="js:domain != 'bugzilla.mozilla.org'"
-                                        tal:attributes="src string:http://www.google.com/s2/favicons?domain=${domain}" />
-
-                                    <img class="favicon" src="https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png"
-                                        tal:condition="js:domain == 'bugzilla.mozilla.org'" />
-
-                                    <a class="link" href="#"
-                                        tal:content="title" tal:attributes="href href">
-                                            [Bug 460755] flash 10 problem; after closing flash-fullscreen
-                                            mode the video is not to see in the window.
-                                    </a>
-
-                                </h4>
-
-                                <div class="updated" tal:define="is_today js:(new Date()).strftime('%F') == time.strftime('%F')">
-                                    <span class="timeago" 
-                                        tal:attributes="title js:$.dateToISO8601(time)" 
-                                        tal:content="js:time.strftime('%+')">2008-10-20T15:58:00-0400</span>
-                                    <span> — </span>
-                                    <span class="time" 
-                                        tal:content="js:time.strftime('%I:%M %p')">11:47 pm</span>
-                                    <span tal:condition="not:is_today"> — </span>
-                                    <span class="date" tal:condition="not:is_today" 
-                                        tal:content="js:time.strftime('%Y %b %d')">2008 Oct 20</span>
-                                    <span tal:condition="author"> — </span>
-                                    <span class="author" 
-                                        tal:condition="author" tal:content="author">Joe Schmoe</span>
-                                </div>
-
-                                <ul class="tags">
-                                    <li tal:repeat="tag tags">
-                                        <span tal:content="tag">key</span>=<span tal:content="tags/?tag">value</span>
-                                    </li>
-                                </ul>
-
+                    <form id="side-filters" class="filters">
+                        <h3>Filters</h3>
+                        <ul class="groups">
+                            <?python
+                                groups = {}
+                                for a_feed in feeds:
+                                    group = a_feed['config']['group']
+                                    if group in groups:
+                                        groups[group].append(a_feed)
+                                    else:
+                                        groups[group] = [ a_feed ]
+                            ?>
+                            <li py:for="c_group, c_sources in groups.iteritems()"
+                                class="filter group group-${c_group}">
+                                <input type="checkbox" name="${c_group}" />
+                                <label for="${c_group}">
+                                    <span class="name">${c_group}</span> 
+                                </label>
                             </li>
-
                         </ul>
-
-                    </div><!-- end #content div -->
+                    </form>
 
                     <div id="footer-divider"><hr /></div>
 

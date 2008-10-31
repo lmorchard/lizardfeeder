@@ -42,37 +42,24 @@ def main():
                     if updated is None or entry_updated < updated: 
                         updated = entry_updated
 
-                    for tag_ele in findall(entry, 'category'):
-                        tag = tag_ele.getAttribute('term')
-                        if tag.startswith('group'): 
-                            if tag in stats:
-                                stats[tag] += 1
-                            else:
-                                stats[tag] = 1
+                    tags = dict([ 
+                        ( x.getAttribute('term') + '=True' ).split('=', 2)[0:2]
+                        for x in findall(entry, 'category') 
+                    ])
+
+                    if 'group' in tags:
+                        label = tags['group']
+                        if 'bugzilla:bug_status' in tags:
+                            label = label + ';' + tags['bugzilla:bug_status']
+                        if label in stats:
+                            stats[label] += 1
+                        else:
+                            stats[label] = 1
 
                 all_stats[updated] = stats
 
     json = simplejson.JSONEncoder(indent=True)
     open(output_dir + '/stats.json', 'w').write(json.encode(all_stats))
-
-def writeFeed(file, feed):
-    """
-    Write a feed out to the given file object, attempting to use xmllint to
-    tidy up first.
-    """
-    try:
-        # HACK: The feed XML looks a bit nasty here after all the transformations,
-        # so attempt a quick pass though xmllint to tidy things up
-        lint = Popen( 
-            ('xmllint', '--format','-'), 
-            stdin=PIPE, 
-            stdout=file 
-        )
-        lint.stdin.write(feed.toxml('utf-8'))
-    except Exception, e:
-        # If the above fails, assume it's because xmllint didn't work and try
-        # writing the ugly version.
-        file.write(feed.toxml('utf-8'))
 
 def findall(parent, name, ns=ATOM_NS):
     """
@@ -99,35 +86,5 @@ def findtext(parent, name, ns=ATOM_NS):
     """
     node = find(parent, name, ns)
     return node and node.firstChild.nodeValue or None
-
-def getFeedLinks(doc, feed):
-    """
-    For the given document and feed, attempt to dig up the Atom pagination 
-    links.  The links will be created if not already present.
-    """
-    rels  = ( 'self', 'next', 'previous' )
-    links = {}
-
-    for link in findall(feed, 'link'):
-        for rel in rels:
-            if link.getAttribute('rel') == rel:
-                links[rel] = link
-    
-    # Check to see if the desired links were found.
-    for rel in rels:
-        if not rel in links or not links[rel]:
-            # The link wasn't found in the page, so 
-            # create a new one.
-            link = doc.createElement('link')
-            link.setAttribute('rel', rel)
-            links[rel] = link
-        else:
-            link = links[rel]
-            feed.removeChild(link)
-
-        # Ensure the links stay at the top of the feed.
-        feed.insertBefore(link, feed.firstChild)
-
-    return links
 
 if __name__ == '__main__': main()

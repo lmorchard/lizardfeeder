@@ -30,3 +30,19 @@ Index: lizardfeeder/venus/planet/config.py
          # write to cache
          if use_cache:
              cache = open(cache_filename, 'w')
+Index: lizardfeeder/venus/planet/shell/_genshi.py
+===================================================================
+--- lizardfeeder.orig/venus/planet/shell/_genshi.py	2008-10-30 20:40:45.000000000 -0400
++++ lizardfeeder/venus/planet/shell/_genshi.py	2008-10-30 20:41:03.000000000 -0400
+@@ -102,7 +102,10 @@
+              entry.source.config = find_config(config, entry.source)
+ 
+              # add new_feed and new_date fields
+-             entry.new_feed = entry.source.id
++             if 'id' in entry.source:
++                 entry.new_feed = entry.source.id
++             else:
++                 entry.new_feed = None
+              entry.new_date = date = None
+              if entry.has_key('published_parsed'): date=entry.published_parsed
+              if entry.has_key('updated_parsed'): date=entry.updated_parsed

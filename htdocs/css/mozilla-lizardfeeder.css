@@ -84,10 +84,14 @@
 
 /* }}} */
 
+#intro h2 {
+    margin: 1.25em 0 0.25em 0;
+}
 
 #feed-items {
     list-style-type: none;
-    width: 620px;
+    padding-top: 1em;
+    width: 675px;
 }
 #feed-items.paused { 
 }
@@ -160,21 +164,21 @@
     border: 1px #ddd solid;
 }
 
-#whats-happening #filters {
+#whats-happening .filters {
 }
 
-#whats-happening #filters ul.groups {
+#whats-happening .filters ul.groups {
     list-style: none;
     margin: 0 0 0 1.5em; 
     padding: 0.5em 0 0 0;
 }
-#whats-happening #filters ul.groups li.group {
+#whats-happening .filters ul.groups li.group {
     margin: 0; 
-    padding: 0 0.5em 0.5em 0.5em;
+    padding: 0.5em 0 0.5em 0;
     background: transparent;
     clear: both;
 }
-#whats-happening #filters ul.groups li.group a.expand {
+#whats-happening .filters ul.groups li.group a.expand {
     display: block;
     float: left;
     font-family: monospace;
@@ -185,85 +189,123 @@
     text-decoration: none;
     color: #333;
 }
-#whats-happening #filters ul.groups li.group label {
+#whats-happening .filters ul.groups li.group label {
     display: block;
-    padding: 0.5em 0.5em 0.5em 2.25em;
+    padding: 0 0.5em 0.5em 1.75em;
 }
-#whats-happening #filters ul.groups li.group label.hover {
+#whats-happening .filters ul.groups li.group label.hover {
     cursor: pointer;
 }
-#whats-happening #filters ul.groups li.group label.hit {
+#whats-happening .filters ul.groups li.group label.hit {
     background: #ffa;
 }
-#whats-happening #filters ul.groups li.group input {
+#whats-happening .filters ul.groups li.group input {
     float: left;
-    padding: 0; margin: 0.5em;
+    padding: 0; margin: 0;
 }
-#whats-happening #filters li.group ul.sources {
+#whats-happening .filters li.group ul.sources {
     list-style: none;
     margin: 0.5em 0 0em 0; padding: 0;
     font-size: 90%;
 }
-#whats-happening #filters li.group ul.sources li.source {
+#whats-happening .filters li.group ul.sources li.source {
     background: transparent;
     margin: 0 0.5em 0 1.75em;
     padding: 0;
     clear: both;
 }
-#whats-happening #filters li.group ul.sources li.source label {
+#whats-happening .filters li.group ul.sources li.source label {
     background: transparent;
     display: block;
     margin: 0 0 0em 0; 
-    padding: 0.5em 0.25em 0.5em 2em;
+    padding: 0em 0.5em 0em 1.5em;
 }
-#whats-happening #filters li.group ul.sources li.source label.hover {
+#whats-happening .filters li.group ul.sources li.source label.hover {
     background: #eee;
 }
-#whats-happening #filters li.group ul.sources li.source input {
+#whats-happening .filters li.group ul.sources li.source input {
     float: left;
     padding: 0; margin: 0.5em;
 }
 
-#whats-happening #filters .filter label span.count {
+#whats-happening .filters .filter label span.count {
     padding: 0 0 0 0.25em;
 }
-#whats-happening #filters .filter label span.count:before {
+#whats-happening .filters .filter label span.count:before {
     content: "(";
 }
-#whats-happening #filters .filter label span.count:after {
+#whats-happening .filters .filter label span.count:after {
     content: ")";
 }
 
-#whats-happening #filters .filter label span.name, #feed-items .entry .group span { 
+#whats-happening .filters .filter label span.name, #feed-items .entry .group span { 
     padding: 0.125em 0.5em;
     background: #dfd;
     border: 1px #ddd solid;
 }
-#whats-happening #filters .group-events label span.name, #feed-items .group-events .group span { 
+#whats-happening .filters .group-events label span.name, #feed-items .group-events .group span { 
     background: #fff; color: #000; border-top: 2px solid #f00;
 }
-#whats-happening #filters .group-bugs label span.name, #feed-items .group-bugs .group span { 
+#whats-happening .filters .group-bugs label span.name, #feed-items .group-bugs .group span { 
     background: #f11; color: #fff;
 }
-#whats-happening #filters .group-wiki label span.name, #feed-items .group-wiki .group span { 
+#whats-happening .filters .group-wiki label span.name, #feed-items .group-wiki .group span { 
     background: #346; color: #fff;
 }
-#whats-happening #filters .group-code label span.name, #feed-items .group-code .group span { 
+#whats-happening .filters .group-code label span.name, #feed-items .group-code .group span { 
     background: #111; color: #0f0;
     font-family: monospace;
 }
-#whats-happening #filters .group-bookmarks label span.name, #feed-items .group-bookmarks .group span { 
+#whats-happening .filters .group-bookmarks label span.name, #feed-items .group-bookmarks .group span { 
     background: #135bc9; color: #fff;
 }
-#whats-happening #filters .group-discussions label span.name, #feed-items .group-discussions .group span { 
+#whats-happening .filters .group-discussions label span.name, #feed-items .group-discussions .group span { 
     background: #eee; color: #023;
 }
-#whats-happening #filters .group-microblogs label span.name, #feed-items .group-microblogs .group span { 
+#whats-happening .filters .group-microblogs label span.name, #feed-items .group-microblogs .group span { 
     background: #fff; color: #0cf;
 }
-#whats-happening #filters .group-blogs label span.name, #feed-items .group-blogs .group span { 
+#whats-happening .filters .group-blogs label span.name, #feed-items .group-blogs .group span { 
     background: #f81; color: #fff;
 }
-#whats-happening #filters .group-photos label span.name, #feed-items .group-photos .group span { 
+#whats-happening .filters .group-photos label span.name, #feed-items .group-photos .group span { 
     background: #fff; color: #47b; border-bottom: 1px solid #d49;
+}
+#whats-happening #content {
+    position: relative;
+    width: 100%;
+}
+#whats-happening #side-filters {
+    height: 4em;
+    clear: both;
+    font-size: 0.90em;
+    position: absolute;
+    top: 370px; 
+    right: 35px;
+    width: 170px;
+}
+#whats-happening #side-filters h3 {
+    color: #1E4262;
+    margin: 0;
+    padding: 7px 5px 5px 5px;
+    padding: 0 5px;
+}
+#whats-happening #side-filters .groups li {
+}
+#whats-happening #content .filters ul.groups {
+    padding: 0;
+    margin: 0 0 0 0;
+}
+#whats-happening #content .filters .groups li {
+    display: inline;
+    clear: none;
+    white-space: nowrap;
+    padding: 0;
+}
+#whats-happening #content .filters .groups li input {
+    margin: 0.5em 0.125em;
+}
+#whats-happening #content .filters .groups li label {
+    float: left;
+    padding: 0.5em;
 }
