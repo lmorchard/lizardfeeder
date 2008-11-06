@@ -134,7 +134,7 @@ window.Lizardfeeder_Main = (function(){
          */
         updateFilters: function() {
             var that = this;
-            $('#filters .source input[type=checkbox]').each(function() {
+            $('.filters input[type=checkbox]').each(function() {
                 if (!this.checked) {
                     that.session.source_filters[this.name] = false;
                 } else {
@@ -310,7 +310,7 @@ window.Lizardfeeder_Main = (function(){
                 .hide();
 
             // If this entry is not filtered, display it.
-            if (this.session.source_filters[tags['short']] !== false) {
+            if (this.session.source_filters[tags['group']] !== false) {
                 new_item.show('fast');
             }
 

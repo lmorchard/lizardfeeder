@@ -18,12 +18,7 @@ h4#moz a {
 h4#moz a {
     background:transparent url(http://addons.mozilla.org/img/sprite-alpha.png) no-repeat scroll 0 -1px;
 }
-
 .waiting h4#moz {
-    /*
-    background:transparent url(../img/spin.gif) no-repeat scroll right 4px;
-    padding-right:35px;
-    */
     background:transparent url(../img/clock.gif) no-repeat scroll right -4px;
     padding-right:54px;
 }
@@ -40,9 +35,8 @@ h4#moz a {
     padding-right:45px;
 }    
 
-#footer {
-    margin-top: 0px;
-}
+#footer { margin-top: 0px; }
+#footer-contents { padding: 35px 35px 35px 165px }
 
 #templates, .template { display: none }
 
