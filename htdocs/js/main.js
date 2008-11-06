@@ -38,8 +38,17 @@ window.Lizardfeeder_Main = (function(){
                     .find('li:not(.template)').remove().end()
                     .hover(
                         // Set up handlers to try pausing the flow on mouse-over.
-                        function() { $(this).addClass('paused'); that.paused = true },
-                        function() { $(this).removeClass('paused'); that.paused = false }
+                        function() { 
+                            $(this).addClass('paused'); 
+                            that.paused = true;
+                            that.paused_class = $('body').attr('class');
+                            $('body').attr('class', 'paused');
+                        },
+                        function() { 
+                            $(this).removeClass('paused'); 
+                            that.paused = false;
+                            $('body').attr('class', that.paused_class);
+                        }
                     )
                     /*
                     .find('.entry:first .updated .timeago').each(function() {
@@ -138,6 +147,7 @@ window.Lizardfeeder_Main = (function(){
          * Load the feed index.
          */
         checkFeed: function() {
+            $('body').attr('class', 'loading')
             $.getJSON(
                 this.config.feed_url + '?__=' + (new Date().getTime()),
                 $.hitch(this, function(feed) {
@@ -181,6 +191,7 @@ window.Lizardfeeder_Main = (function(){
                 this.time_factor = 1;
 
                 // No more pages, so schedule a feed check.
+                $('body').attr('class', 'waiting');
                 return $.delay(this, this.checkFeed,
                     this.config.feed_check_delay);
             }
@@ -195,6 +206,7 @@ window.Lizardfeeder_Main = (function(){
                 next_page.href + '?__=' + (new Date().getTime()),
                 $.hitch(this, function(entries, data) {
                     this.entries = entries;
+                    $('body').attr('class', 'playing');
                     this.processNextEntry();
                 })
             );
