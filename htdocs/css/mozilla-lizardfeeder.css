@@ -36,7 +36,7 @@ h4#moz a {
 }    
 
 #footer { margin-top: 0px; }
-#footer-contents { padding: 35px 35px 35px 165px }
+#footer-contents { padding: 35px 35px 35px 165px; width: 780px }
 
 #templates, .template { display: none }
 
