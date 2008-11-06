@@ -11,7 +11,7 @@ from xml.dom.minidom import parse, parseString, Node
 import urllib
 
 MAX_PHOTOS   = 50
-API_KEY      = 'e2c6b12dd1cbf864d99060f6425b42cf'
+API_KEY      = '6c94cb6518a694c4dbc99b50427a8405'
 SEARCH_TERMS = 'mozilla OR firefox'
 OUTPUT_FN    = 'htdocs/mozilla-flickr-search.xml'
 

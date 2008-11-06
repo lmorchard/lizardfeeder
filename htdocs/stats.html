@@ -21,9 +21,18 @@
         <script src="js/stats.js" type="text/javascript"></script>
     </head>
 
-    <body>
+    <body id="stats">
 
         <div id="stats_graph" style="width: 800px; height: 450px"></div>
+
+        <form>
+            <ul id="legend">
+                <li class="template legend_label">
+                    <input type="checkbox" checked="checked" name="legend_name" />
+                    <label for="legend_name">Legend Name</label>
+                </li>
+            </ul>
+        </form>
 
     </body>
 

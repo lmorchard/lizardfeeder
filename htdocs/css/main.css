@@ -97,3 +97,10 @@ ul#feed-items li {
     float: left;
     padding: 0; margin: 0.5em;
 }
+#stats #stats_graph {
+    float: left
+}
+#stats ul#legend {
+    float: left;
+}
+

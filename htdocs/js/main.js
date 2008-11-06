@@ -27,7 +27,7 @@ window.Lizardfeeder_Main = (function(){
             var that = this;
 
             this.paused = false;
-            this.time_factor = 1;
+            this.time_factor = 50;
             this.session = {
                 source_filters: {}
             };
@@ -35,16 +35,19 @@ window.Lizardfeeder_Main = (function(){
             $(document).ready($.hitch(this, function() {
 
                 $('#feed-items')
+                    .find('li:not(.template)').remove().end()
                     .hover(
                         // Set up handlers to try pausing the flow on mouse-over.
                         function() { $(this).addClass('paused'); that.paused = true },
                         function() { $(this).removeClass('paused'); that.paused = false }
                     )
+                    /*
                     .find('.entry:first .updated .timeago').each(function() {
                         // Set last update time to update time of the first entry.
                         that.session.last_time = 
                             $.parseISO8601( this.getAttribute('title') );
                     });
+                    */
             
                 // Set up the checkbox filters, attach hover and click events.
                 $('.filters')
@@ -146,7 +149,7 @@ window.Lizardfeeder_Main = (function(){
                         $.parseISO8601(feed.entry_pages[feed.entry_pages.length-1].end_time);
 
                     if (!this.session.last_time) {
-                        this.session.last_time = $.parseISO8601(feed.entry_pages[0].end_time);
+                        this.session.last_time = $.parseISO8601(feed.entry_pages[feed.entry_pages.length-1].end_time);
                     }
 
                     this.loadNextPage();
@@ -175,6 +178,8 @@ window.Lizardfeeder_Main = (function(){
             var next_page = this.feed.entry_pages.pop();
 
             if (!next_page) {
+                this.time_factor = 1;
+
                 // No more pages, so schedule a feed check.
                 return $.delay(this, this.checkFeed,
                     this.config.feed_check_delay);
