@@ -15,11 +15,14 @@ sys.path.extend([ os.path.join(base_dir, d) for d in
     ( 'lib', 'extlib', 'venus', 'venus/planet/vendor' ) 
 ])
 
+import feedparser, simplejson
+
 ATOM_NS = 'http://www.w3.org/2005/Atom'
 
 def getUpdatedTimeIndex(updated):
     """From the updated time of an entry, derive the index string for grouping"""
-    return updated[0:13].replace('-','/').replace(':','/').replace('T','/')
+    # from '2008-11-06T19:26:35Z' to '2008/11/06/19-2'
+    return updated[0:15].replace('-','/').replace('T','/').replace(':','-')
 
 def main():
     """ """
@@ -118,7 +121,7 @@ def main():
             os.makedirs(output_fn_dir)
         
         # Write the current page as XML out to a file.
-        writeFeed(open(output_fn, 'w'), feed_pages[idx])
+        writeFeed(output_fn, feed_pages[idx])
 
     # Remove the relative part of links in the first feed page, then write it
     # to disk as the current index.
@@ -131,13 +134,16 @@ def main():
             link.setAttribute('href', href)
 
         output_fn = '%s/%s' % ( output_dir, output_fn_tmpl % 'index' )
-        writeFeed(open(output_fn, 'w'), index_feed)
+        writeFeed(output_fn, index_feed)
 
-def writeFeed(file, feed):
+def writeFeed(fn, feed):
     """
     Write a feed out to the given file object, attempting to use xmllint to
     tidy up first.
     """
+    feed_data = feed.toxml('utf-8')
+
+    file = open(fn, 'w')
     try:
         # HACK: The feed XML looks a bit nasty here after all the transformations,
         # so attempt a quick pass though xmllint to tidy things up
@@ -146,11 +152,35 @@ def writeFeed(file, feed):
             stdin=PIPE, 
             stdout=file 
         )
-        lint.stdin.write(feed.toxml('utf-8'))
+        lint.stdin.write(feed_data)
     except Exception, e:
         # If the above fails, assume it's because xmllint didn't work and try
         # writing the ugly version.
-        file.write(feed.toxml('utf-8'))
+        file.write(feed_data)
+
+    # Generate a .json version of the .xml feed, replacing the next/prev header 
+    # links with .json URLs
+    feed = feedparser.parse(feed_data)
+    json = MyJSONEncoder()
+    j_fn = fn.replace('.xml', '.json')
+    for link in feed.feed['links']:
+        if link['href'].endswith('.xml'):
+            link['href'] = link['href'].replace('.xml', '.json')
+    open(j_fn, 'w').write(json.encode(feed))
+
+class MyJSONEncoder(simplejson.JSONEncoder):
+
+    def default(self, o):
+        """
+        Support arbitrary iterators for encoding.
+        """
+        try:
+            iterable = iter(o)
+        except TypeError:
+            pass
+        else:
+            return list(iterable)
+        return JSONEncoder.default(self, o)
 
 def findall(parent, name, ns=ATOM_NS):
     """
