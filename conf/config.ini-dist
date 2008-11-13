@@ -58,6 +58,11 @@ name    = Mozilla on Upcoming
 short   = upcoming-mozilla
 group   = events
 
+[https://addons.mozilla.org/en-US/firefox/browse/type:1/cat:all/format:rss?sort=updated]
+name    = AMO Updated Addons
+short   = amo-updated
+group   = addons
+
 [https://bugzilla.mozilla.org/buglist.cgi?chfieldfrom=2h&order=bugs.delta_ts+desc&ctype=atom]
 name    = Bugzilla activity
 short   = bugzilla
@@ -74,6 +79,11 @@ filters = ../../filters/viewvc-svn.xslt
 name    = CVS activity
 short   = cvs
 group   = code
+
+[http://planet.mozillamessaging.com/atom.xml]
+name    = Planet Mozilla Messaging
+short   = planet-mozilla-messaging
+group   = blogs
 
 [http://planet.mozilla.org/atom.xml]
 name    = Planet Mozilla
