@@ -79,7 +79,7 @@
                                     <span class="time">${time.strftime('%I:%M %p', entry.updated_parsed)}</span>
                                     <span py:if="not is_today"> — </span>
                                     <span class="date" py:if="not is_today">${time.strftime('%Y %b %d', entry.updated_parsed)}</span>
-                                    — <span class="author">${entry.author or 'n/a'}</span>
+                                    — <span class="author">${'author' in entry and entry.author or 'n/a'}</span>
                                 </div>
                             </li>
                         </py:for> 

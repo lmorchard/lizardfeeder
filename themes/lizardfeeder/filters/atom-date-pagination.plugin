@@ -134,9 +134,9 @@ def main():
             link.setAttribute('href', href)
 
         output_fn = '%s/%s' % ( output_dir, output_fn_tmpl % 'index' )
-        writeFeed(output_fn, index_feed)
+        writeFeed(output_fn, index_feed, False)
 
-def writeFeed(fn, feed):
+def writeFeed(fn, feed, do_json=True):
     """
     Write a feed out to the given file object, attempting to use xmllint to
     tidy up first.
@@ -160,13 +160,14 @@ def writeFeed(fn, feed):
 
     # Generate a .json version of the .xml feed, replacing the next/prev header 
     # links with .json URLs
-    feed = feedparser.parse(feed_data)
-    json = MyJSONEncoder()
-    j_fn = fn.replace('.xml', '.json')
-    for link in feed.feed['links']:
-        if link['href'].endswith('.xml'):
-            link['href'] = link['href'].replace('.xml', '.json')
-    open(j_fn, 'w').write(json.encode(feed))
+    if do_json:
+        feed = feedparser.parse(feed_data)
+        json = MyJSONEncoder()
+        j_fn = fn.replace('.xml', '.json')
+        for link in feed.feed['links']:
+            if link['href'].endswith('.xml'):
+                link['href'] = link['href'].replace('.xml', '.json')
+        open(j_fn, 'w').write(json.encode(feed))
 
 class MyJSONEncoder(simplejson.JSONEncoder):
 
