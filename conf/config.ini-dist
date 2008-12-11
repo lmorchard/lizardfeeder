@@ -1,11 +1,11 @@
 [Planet]
-name        = lizardfeeder
-link        = http://mozilla.org/
+name        = Lizardfeeder
+link        = http://feeds.mozilla.com/
 owner_name  = l.m.orchard
 owner_email = lorchard@mozilla.com
 
 # log_level: One of DEBUG, INFO, WARNING, ERROR or CRITICAL
-log_level = INFO
+log_level = CRITICAL
 
 cache_directory    = ./data
 cache_keep_entries = 250
@@ -26,7 +26,7 @@ items_per_page = 999
 # number of days will be marked as inactive
 activity_threshold = 90
 
-spider_threads = 24
+spider_threads = 8
 
 ###########################################################################
 # subscription list
@@ -53,10 +53,10 @@ short   = twitter-mozilla
 group   = microblogs
 filters = ../../filters/omit-content.xslt
 
-[http://upcoming.yahoo.com/syndicate/v2/search_all/?q=mozilla&loc=&rt=1]
-name    = Mozilla on Upcoming
-short   = upcoming-mozilla
-group   = events
+#[http://upcoming.yahoo.com/syndicate/v2/search_all/?q=mozilla&loc=&rt=1]
+#name    = Mozilla on Upcoming
+#short   = upcoming-mozilla
+#group   = events
 
 [https://addons.mozilla.org/en-US/firefox/browse/type:1/cat:all/format:rss?sort=updated]
 name    = AMO Updated Addons
