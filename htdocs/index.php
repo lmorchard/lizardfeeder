@@ -24,7 +24,7 @@
         <script src="js/lmo-utils.js" type="text/javascript">/**/</script>
         <script src="js/lizardfeeder/feeder.js" type="text/javascript">/**/</script>
         <script src="js/lizardfeeder/timecontrol.js" type="text/javascript">/**/</script>
-        <script src="js/main.js" type="text/javascript">/**/</script>
+        <script src="js/lizardfeeder/main.js" type="text/javascript">/**/</script>
     </head>
 
     <body id="whats-happening" class="">
