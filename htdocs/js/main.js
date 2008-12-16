@@ -30,16 +30,13 @@ LizardFeeder.Main = (function(){
 
             $(document).ready($.hitch(this, function() {
 
-                // Attempt to set a start time scraped from the first static
-                // entry on the page.
+                // Attempt to set a start time scraped from the last static
+                // entry on the page.  Defaults to now, if none found.
                 var start_time = new Date();
                 $('#feed-items')
-                    .find('.entry:first .updated .timeago')
+                    .find('.entry:not(.template):last .updated .timeago')
                     .each(function() {
-                        start_time = new Date(
-                            $.parseISO8601(this.getAttribute('title')) - 
-                            (30 * 60 * 1000) 
-                        );
+                        start_time = $.parseISO8601(this.getAttribute('title'));
                     })
 
                 this.wireUpWindowShade();
@@ -109,12 +106,12 @@ LizardFeeder.Main = (function(){
          */
         wireUpFeedItems: function() {
             var that = this;
+
             $('#feed-items')
-                // Hide all the static entries in the page source, since
-                // we'll be streaming them in from feeds soon.
+                // Remove all the static items to make way for dynamic fetch.
                 .find('li:not(.template)').remove().end()
+                // Set up handlers to pause the flow on mouse-over.
                 .hover(
-                    // Set up handlers to try pausing the flow on mouse-over.
                     function() { 
                         $(this).addClass('paused'); 
                         that.feeder.pause();

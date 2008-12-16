@@ -172,7 +172,7 @@ LizardFeeder.Feeder.prototype = (function() {
             
             // Schedule the next entry to be processed.
             var wait_next_entry = 
-                this.calculateNextEntryDelay(entry) + 1;
+                parseInt(this.calculateNextEntryDelay(entry) + 1);
 
             // this.updateStatusDisplay(); 
 
