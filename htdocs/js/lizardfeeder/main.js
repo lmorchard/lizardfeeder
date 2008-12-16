@@ -19,7 +19,7 @@ LizardFeeder.Main = (function(){
             index_url:   'jsonp.php/archives/index.json',
             sources_url: 'jsonp.php/sources.json',
             max_entries: 50,
-            check_delay: 30 * 1000, // 30 seconds
+            check_delay: 30 * 1000 // 30 seconds
         },
 
         /**
@@ -92,7 +92,10 @@ LizardFeeder.Main = (function(){
                     $(shade).find('.nav li.hide a').css('display', 'none');
                     
                     // HACK: 14 is a magic number, should be the margin of the panes area.
-                    shade.animate({ 'marginTop': 0 - shade.height() + 14 }, 250);
+                    // HACK: #intro .nav height also seems to be 0 on Fx and 33 on MSIE.
+                    shade.animate({ 
+                        'marginTop': 0 - shade.height() + 14 + $('#intro .nav').height() 
+                    }, 250);
                     return false;
                 }
 

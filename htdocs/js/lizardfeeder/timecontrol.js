@@ -38,6 +38,33 @@ LizardFeeder.TimeControl.prototype = (function() {
          */
         init: function() {
             var that = this;
+
+            var speed_steps = [ 1, 5, 10, 25, 50, 100, 200 ];
+            $('#speed-control').slider({
+                steps: speed_steps.length-1,
+                range: true,
+                change: function(e, ui) {
+                    var idx = parseInt( ( (ui.value-1) / 100 ) * ( speed_steps.length ) );
+                    var speed = speed_steps[ idx ];
+                    that.config.main.feeder.config.time_factor = speed;
+                }
+            })
+
+            var scale = $('#speed-control .scale');
+            var width = scale.width();
+            var scale_tmpl = scale.find('.template');
+
+            for (var i=0; i<speed_steps.length; i++) {
+                var step = speed_steps[i];
+                scale_tmpl.clone().removeClass('template')
+                    .text(step + 'x')
+                    // HACK: I have no idea why this works.
+                    .css('left',  10 + (width / (speed_steps.length-1) * 0.98 ) * i )
+                    .appendTo(scale);
+                scale.append(' ');
+            }
+            $('#speed-control .scale li:last').addClass('last');
+
             this.fetchArchiveStats(function(stats) {
 
                 // Do a quick sweep to find the maximum total over days
@@ -93,11 +120,9 @@ LizardFeeder.TimeControl.prototype = (function() {
                     year_el.appendTo('#date-nav')
                 }
 
-                // Wire up interactivity, remove the templates, and select the
-                // latest year and month.
+                // Wire up interactivity and select the latest year and month.
                 $('#date-nav')
                     .click($.hitch(that, that.handleDateNavClick))
-                    .find('.template').remove().end()
                     .find('.year:last').addClass('selected')
                         .find('.month:last').addClass('selected').end()
                     .end()

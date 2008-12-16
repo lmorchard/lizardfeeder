@@ -47,7 +47,7 @@
                                    The Lizard Feeder is a compilation of data
                                    feeds representing activity within the
                                    Mozilla community. If you have suggestions
-                                   for things we've missed, let us know. 
+                                   for things we've missed, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=469838">let us know</a>. 
                                 </p>
 
                                 <ul id="date-nav">
@@ -75,8 +75,14 @@
                                     </li>
                                 </ul>
 
+                                <div id="speed-control">
+                                    <div class="ui-slider-handle"></div>
+                                    <ul class="scale"><li class="template"></li></ul>
+                                </div>
+
                             </div>
 
+                            <!--
                             <div id="intro-options" class="pane">
                                 <h1>LizardFeeder Options</h1>
 
@@ -85,12 +91,13 @@
                                 </p>
                             
                             </div>
+                            -->
 
                         </div>
 
                         <ul class="nav">
-                            <li class="selected"><a href="#intro-about">About</a></li>
-                            <li><a href="#intro-options">Options</a></li>
+                            <li class="selected"><a href="#intro-about">About / Options</a></li>
+                            <!-- <li><a href="#intro-options">Options</a></li> -->
                             <li class="hide"><a href="#intro-hide">x Hide</a></li>
                         </ul>
 

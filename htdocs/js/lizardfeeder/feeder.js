@@ -1,5 +1,5 @@
 /**
- *
+ * Async feed streaming machine.
  */
 if (typeof window.LizardFeeder == 'undefined')
     window.LizardFeeder = {}
