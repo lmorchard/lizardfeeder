@@ -13,17 +13,6 @@ cache_keep_entries = 250
 output_theme = ../../themes/lizardfeeder
 output_dir   = ./htdocs
 
-[../../themes/lizardfeeder/filters/atom-to-json.py]
-page_filename = atom-page-%s.json
-
-[../../themes/lizardfeeder/filters/atom-date-pagination.py]
-page_filename = atom-%s.xml
-
-# This is large, but output templates should enforce time-wise limits
-items_per_page = 999
-
-# If non-zero, all feeds which have not been updated in the indicated
-# number of days will be marked as inactive
 activity_threshold = 90
 
 spider_threads = 8
@@ -88,6 +77,11 @@ group   = blogs
 [http://planet.mozilla.org/atom.xml]
 name    = Planet Mozilla
 short   = planet
+group   = blogs
+
+[http://www.spreadthunderbird.com/rss.xml]
+name    = SpreadThunderbird
+short   = spreadthunderbird
 group   = blogs
 
 [https://wiki.mozilla.org/index.php?title=Special:RecentChanges&feed=rss]
