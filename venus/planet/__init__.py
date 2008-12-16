@@ -33,6 +33,7 @@ def getLogger(level, format):
     return logger
 
 sys.path.insert(1, os.path.join(os.path.dirname(__file__),'vendor'))
+sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),'extlib'))
 
 # Configure feed parser
 import feedparser
