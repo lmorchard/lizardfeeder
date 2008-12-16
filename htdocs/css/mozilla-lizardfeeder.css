@@ -63,10 +63,168 @@ h4#moz a {
 }
 
 #intro {
-    padding-top: 1.5em;
+    padding: 0 0 0 0; margin: 0 0.5em 0 0.5em;
+    background: #fff;
+    color: #333;
 }
-#intro h2 {
-    margin: 0 0 0.25em 0;
+#intro .panes {
+    margin: 0; padding: 0;
+    height: 300px;
+    overflow: auto;
+    border: 1px solid #212845;
+    border-top: none;
+}
+#intro .panes div.pane {
+    padding: 18px 1.5em;
+    display: none;
+}
+#intro .panes div.selected {
+    display: block;
+}
+#intro .panes h1 {
+    margin: 0 0 0.5em 0;
+}
+#intro ul.nav {
+    font-size: 1.125em;
+    left: 0;
+    padding: 0 0 0 0; margin: 0 0 2.5em 0;
+}
+#intro ul.nav li {
+    padding: 0; margin: 0;
+    margin-top: -1px;
+    list-style-type: none;
+    float: left;
+}
+#intro ul.nav li.hide {
+    float: right;
+    display: block;
+}
+#intro ul.nav li a {
+    display: block;
+    padding: 0.25em 0.75em; margin: 0 0.25em 0 0;
+    color: #f2f2f2;
+    background: #212845;
+    border: 1px solid #212845;
+    border-top: none;
+}
+#intro ul.nav li.hide a {
+    margin: 0;
+}
+#intro ul.nav li a:hover {
+    background: #515875;
+    color: #f2f2f2;
+}
+#intro ul.nav li.selected a, #intro ul.nav li.selected a:hover {
+    background: #fff;
+    color: #212845;
+}
+
+#date-nav {
+    position: relative;
+    text-align: left;
+    margin: 1.5em 0 0 2em;
+}
+#date-nav a:hover {
+    cursor: pointer;
+}
+#date-nav ul, #date-nav li {
+    padding: 0; margin: 0; 
+    left: 0;
+    background: none;
+}
+#date-nav .year-total, #date-nav .month-total, #date-nav .day-total {
+    display: none;
+}
+#date-nav .years {
+    position: absolute;
+    top: 0; left: 0;
+}
+#date-nav .year {
+    left: 0;
+    width: 7ex;    
+    margin: 0; padding: 0;
+}
+#date-nav .year .year-meta {
+    margin: 0; padding: 0;
+}
+#date-nav .year .year-meta .year-label {
+    margin: 0; padding: 0 0.25em;
+    text-align: center;
+    background-color: #212845;
+    border: 1px solid #212845;
+    color: #fff;
+}
+#date-nav .selected .year-meta .year-label {
+    background-color: #fff;
+    color: #212845;
+}
+#date-nav .year .months {
+    display: none;
+}
+#date-nav .selected .months {
+    display: block;
+    position: absolute;
+    top: 0; left: 7ex;
+}
+#date-nav .year .months .month {
+}
+#date-nav .year .months .month-meta {
+    width: 2.5ex;    
+    margin: 0; padding: 0;
+}
+#date-nav .year .months .month-meta .month-label {
+    margin: 0; padding: 0 0.25ex;
+    text-align: center;
+    background-color: #212845;
+    border: 1px solid #212845;
+    color: #fff;
+    display: block;
+    width: 2.5ex;
+}
+#date-nav .year .selected .month-meta .month-label {
+    background-color: #fff;
+    color: #212845;
+}
+#date-nav .year .months .month.selected {
+    display: block;
+}
+#date-nav .year .months .month .days {
+    display: none;
+    border: 1px solid #000;
+    position: absolute;
+    top: 0; left: 4.25ex;
+    height: 100px;
+    width: 75ex;
+}
+#date-nav .year .months .selected .days {
+    display: block;
+}
+#date-nav .year .months .month .days .day {
+    float: left;
+    position: relative;
+    height: 100px;
+    width: 2.25ex;
+    padding-right: 0.5ex;
+}
+#date-nav .year .months .month .days .day .day-meta {
+    display: block;
+    position: absolute;
+    background: #515875;
+    height: 50px;
+    bottom: 0px;
+    width: 2.25ex;
+}
+#date-nav .year .months .month .days .day .day-meta:hover {
+    background: #9198b5;
+}
+#date-nav .year .months .month .days .day .day-meta .day-label {
+    font-size: 0.70em;
+    position: absolute;
+    left: 0.25ex; bottom: -1.5em;
+    text-align: center;
+}
+#date-nav .year .months .month .days .template {
+    display: none;
 }
 
 #feed-items {
@@ -149,7 +307,7 @@ h4#moz a {
     clear: both;
     font-size: 0.90em;
     position: absolute;
-    top: 60px; 
+    top: 65px; 
     left: 5px;
     width: 150px;
     text-align: left;
@@ -235,3 +393,5 @@ h4#moz a {
 .filters .group-photos label span.name, #feed-items .group-photos .group span { 
     background: #fff; color: #47b; border-bottom: 1px solid #d49;
 }
+
+

@@ -1,0 +1,63 @@
+<ul id="feed-items" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+    <?python
+        import time
+    ?>
+
+    <py:for each="entry in entries[0:50]">
+        <?python
+            is_today = (time.gmtime()[0:3] == entry.updated_parsed[0:3])
+
+            group = entry.source['config']['group']
+            short = entry.source['config']['short'] 
+            entry_classes = [ 'entry', 'group-'+group, 'short-'+short ]
+
+            domain = entry.link.split('/')[2]
+            if domain == 'bugzilla.mozilla.org':
+                favicon = 'https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png'
+            else:
+                favicon = 'http://www.google.com/s2/favicons?domain=' + domain
+
+            try:
+                tags = dict([ 
+                    (x['term']+'=True').split('=')[0:2] 
+                    for x in dict(entry)['tags'] 
+                ])
+            except Exception:
+                tags = {}
+
+            if 'bugzilla:bug_status' in tags:
+                entry_classes.append('bug-status-'+tags['bugzilla:bug_status'].lower())
+
+            if 'bugzilla:resolution' in tags:
+                entry_classes.append('bug-resolution-'+tags['bugzilla:resolution'].lower())
+        ?>
+        <li class="${' '.join(entry_classes)}">
+            <div class="group"><span>${group}</span></div>
+            <h4 class="title">
+                <img class="favicon" src="${favicon}" />
+                <a class="link" href="${entry.link}">${entry.title}</a>
+            </h4>
+            <div class="updated">
+                <span class="timeago" title="${entry.updated}">${entry.updated}</span> — 
+                <span class="time">${time.strftime('%I:%M %p', entry.updated_parsed)}</span>
+                <span py:if="not is_today"> — </span>
+                <span class="date" py:if="not is_today">${time.strftime('%Y %b %d', entry.updated_parsed)}</span>
+                — <span class="author">${'author' in entry and entry.author or 'n/a'}</span>
+            </div>
+        </li>
+    </py:for> 
+
+    <li class="template entry">
+        <div class="group"><span>bugs</span></div>
+        <h4 class="title">
+            <img class="favicon" src="https://bugzilla.mozilla.org/skins/custom/images/bugzilla.png" />
+            <a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=8675309">Some random bug</a>
+        </h4>
+        <div class="updated">
+            <span class="timeago" title="2008-10-31T15:02:45Z">34 minutes ago</span> — 
+            <span class="time">03:01 PM</span> -
+            <span class="author">Some Author</span>
+        </div>
+    </li>
+
+</ul>

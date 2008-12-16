@@ -74,6 +74,7 @@ def write_index_files(root, index):
         if not key.endswith('.json'):
             # Levels of the tree with non-JSON keys are parent directories, 
             # so recursively build indexes and get summary results
+            is_parent_index = True
             href = '%s/index.json' % key
             sub_start, sub_end, sub_entry_counts = \
                 write_index_files(os.path.join(root, key), index[key])
@@ -81,6 +82,7 @@ def write_index_files(root, index):
         else:
             # Levels of the tree with JSON keys are leaf directories containing
             # feeds, so gather feed details.
+            is_parent_index = False
             href       = key
             feed_fn    = '%s/%s' % (root, key)
             feed_mtime = os.path.getmtime(feed_fn)
@@ -115,7 +117,7 @@ def write_index_files(root, index):
 
         # Update the index entry for this href
         index_data[ENTRIES][href] = \
-            [sub_start, sub_end, sub_entry_counts, False]
+            [sub_start, sub_end, sub_entry_counts, is_parent_index]
 
         # Keep the start and end times for this parent index updated
         if index_data[START] is None or sub_start < index_data[START]:

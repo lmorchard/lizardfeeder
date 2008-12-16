@@ -36,7 +36,7 @@ def main():
     feed = feedparser.parse(sys.stdin.read())
 
     # Dump out the whole parsed feed without pagination.
-    open('%s/%s' % (output_dir, page_fn_tmpl % 'all'), 'w').write(json.encode(feed))
+    # open('%s/%s' % (output_dir, page_fn_tmpl % 'all'), 'w').write(json.encode(feed))
     
     # Yank the list of entries out of the main feed.
     entries = feed['entries']

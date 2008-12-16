@@ -1,0 +1,21 @@
+        <form id="side-filters" class="filters" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+            <ul class="groups">
+                <?python
+                    groups = {}
+                    for a_feed in feeds:
+                        group = a_feed['config']['group']
+                        if group in groups:
+                            groups[group].append(a_feed)
+                        else:
+                            groups[group] = [ a_feed ]
+                ?>
+                <li py:for="c_group, c_sources in groups.iteritems()"
+                    class="filter group group-${c_group}">
+                    <input type="checkbox" name="${c_group}" />
+                    <label for="${c_group}">
+                        <span class="name">${c_group}</span> 
+                    </label>
+                </li>
+            </ul>
+        </form>
+

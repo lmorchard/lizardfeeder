@@ -9,6 +9,10 @@
     extension-element-prefixes="str"
     exclude-result-prefixes="planet xhtml atom">
 
+    <xsl:template match="atom:link[@rel='self']">
+        <link href="http://feeds.mozilla.com/archives/index.xml" rel="self" type="application/atom+xml"/>
+    </xsl:template>
+    
     <!-- Convert planet:tags and planet:short to atom:category -->
     <xsl:template match="atom:entry">
         <xsl:text>&#10;  </xsl:text>

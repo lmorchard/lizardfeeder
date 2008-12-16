@@ -3,7 +3,7 @@
 Tee-style filter which accepts an atom feed and splits it out into date-based
 accumulated archives.
 """
-import sys, os
+import sys, os, time
 import xml.dom, xml.dom.minidom
 from StringIO import StringIO
 from xml.dom.minidom import parse, parseString, Node
@@ -16,6 +16,7 @@ sys.path.extend([ os.path.join(base_dir, d) for d in
 ])
 
 import feedparser, simplejson
+from planet.shell import xslt
 
 ATOM_NS = 'http://www.w3.org/2005/Atom'
 
@@ -57,15 +58,15 @@ def main():
         output_url = output_url_tmpl % idx
         output_fn  = '%s/%s' % ( output_dir, output_fn_tmpl % idx )
         
-        if os.path.exists(output_fn):
+        try:
             # There's already a feed for this time page, so load it up to merge
             # in potentially new entries
             page_doc     = xml.dom.minidom.parse(output_fn)
             page_feed    = page_doc.firstChild
             page_entries = findall(page_feed, 'entry')
             entry_ids    = [ findtext(x, 'id') for x in page_entries ]
-        else:
-            # No feed for this time page yet, so create a new one.
+        except Exception, e:
+            # No valid feed for this time page yet, so create a new one.
             page_doc     = doc
             page_feed    = feed.cloneNode(True)
             page_entries = []
@@ -142,32 +143,22 @@ def writeFeed(fn, feed, do_json=True):
     tidy up first.
     """
     feed_data = feed.toxml('utf-8')
-
-    file = open(fn, 'w')
-    try:
-        # HACK: The feed XML looks a bit nasty here after all the transformations,
-        # so attempt a quick pass though xmllint to tidy things up
-        lint = Popen( 
-            ('xmllint', '--format','-'), 
-            stdin=PIPE, 
-            stdout=file 
-        )
-        lint.stdin.write(feed_data)
-    except Exception, e:
-        # If the above fails, assume it's because xmllint didn't work and try
-        # writing the ugly version.
-        file.write(feed_data)
+    xslt.run('themes/lizardfeeder/filters/pretty-print.xslt', feed_data, fn)
 
     # Generate a .json version of the .xml feed, replacing the next/prev header 
     # links with .json URLs
     if do_json:
         feed = feedparser.parse(feed_data)
-        json = MyJSONEncoder()
+
         j_fn = fn.replace('.xml', '.json')
         for link in feed.feed['links']:
             if link['href'].endswith('.xml'):
                 link['href'] = link['href'].replace('.xml', '.json')
-        open(j_fn, 'w').write(json.encode(feed))
+
+        json = MyJSONEncoder()
+        json_file = open(j_fn, 'w')
+        json_file.write(json.encode(feed))
+        json_file.close()
 
 class MyJSONEncoder(simplejson.JSONEncoder):
 
