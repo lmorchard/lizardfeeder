@@ -186,5 +186,6 @@
         </div>
         <!-- end #footer -->
 
+        <script type="text/javascript" src="js/__utm.js"></script>
     </body>
 </html>
