@@ -158,7 +158,6 @@ LizardFeeder.Feeder.prototype = (function() {
 
             var updated = $.parseISO8601(entry.updated);
             if (updated < this.last_time) {
-                console.log(updated + ' < ' + this.last_time);
                 // This entry has probably already been displayed.
                 return $.delay(this, this.processNextEntry, 1);
             }
@@ -241,7 +240,7 @@ LizardFeeder.Feeder.prototype = (function() {
             }
 
             // If there are too many entries on the page, remove from the end.
-            $('#feed-items .entry:gt(' + (this.config.max_entries-1) + ')')
+            $('#feed-items .entry:not(.template):gt(' + (this.config.max_entries-1) + ')')
                 .remove();
         },
 
