@@ -63,7 +63,7 @@ def write_index_files(root, index):
     if os.path.isfile(index_fn):
         index_data    = simplejson.load(open(index_fn, 'r'))
         index_mtime   = os.path.getmtime(index_fn)
-    else:
+    if not os.path.isfile(index_fn) or len(index_data) != 4:
         index_data    = [ None, None, {}, {} ]
         index_mtime   = None
     
