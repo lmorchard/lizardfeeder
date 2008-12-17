@@ -47,6 +47,7 @@ LizardFeeder.TimeControl.prototype = (function() {
                     var idx = parseInt( ( (ui.value-1) / 100 ) * ( speed_steps.length ) );
                     var speed = speed_steps[ idx ];
                     that.config.main.feeder.config.time_factor = speed;
+                    $('#speed-factor').text(speed);
                 }
             })
 

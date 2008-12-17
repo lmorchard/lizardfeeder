@@ -164,6 +164,7 @@ LizardFeeder.Feeder.prototype = (function() {
 
             // Update the time of the latest entry loaded for this session.
             this.last_time = updated;
+            $('#last-time').text( ''+updated ); //$.dateToISO8601(updated) );
 
             // Get the tags and add the entry to the page.
             var tags = this.extractTagsFromEntry(entry);

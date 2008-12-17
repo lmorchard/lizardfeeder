@@ -1,6 +1,9 @@
 body {
     text-align: left;
 }
+ul li {
+    background: none;
+}
 h4#moz {
     margin:0;
     position:absolute;
@@ -71,7 +74,7 @@ h4#moz a {
 }
 #intro .panes {
     margin: 0; padding: 0;
-    height: 300px;
+    height: 425px;
     overflow: auto;
     border: 1px solid #212845;
     border-top: none;
@@ -121,6 +124,9 @@ h4#moz a {
 #intro ul.nav li.selected a, #intro ul.nav li.selected a:hover {
     background: #fff;
     color: #212845;
+}
+#intro .status {
+    padding: 0.25em 0.75em; margin: 0 0.25em 0 0;
 }
 
 #date-nav {
@@ -231,6 +237,64 @@ h4#moz a {
 #date-nav .year .months .month .days .template {
     display: none;
 }
+
+/*slider*/
+.ui-slider {
+	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
+	background: #f2f2f2;
+	border: 1px solid #aaa;
+	height: .8em;
+	position: relative;
+    width: 85ex;
+    margin-left: 2em;
+}
+.ui-slider-handle {
+	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
+	position: absolute;
+	z-index: 2;
+	top: -3px;
+	width: 1.2em;
+	height: 1.2em;
+	background: #515875;
+	border: 1px solid #ffffff;
+}
+.ui-slider-handle:hover {
+	background: #9198b5;
+}
+.ui-slider-handle-active, .ui-slider-handle-active:hover {
+	border: 1px solid #333;
+}
+.ui-slider-range {
+	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
+	height: .8em;
+	background: #ddd;
+	position: absolute;
+	border: 1px solid #ffffff;
+	border-left: 0;
+	border-right: 0;
+	top: -1px;
+	z-index: 1;
+	opacity:.7;
+	filter:Alpha(Opacity=70);
+}
+#speed-control {
+    margin: 0 0 2em 2em;
+}
+#speed-control .scale {
+    margin: 0; padding: 0;
+    width: 100%;
+    position: relative;
+}
+#speed-control .scale li {
+    font-size: 0.85em;
+    position: absolute;
+    top: 1em;
+    margin: 0; padding: 0;
+    background: none;
+}
+#speed-control .scale li.last {
+}
+
 
 #feed-items {
     list-style-type: none;
@@ -398,62 +462,4 @@ h4#moz a {
 .filters .group-photos label span.name, #feed-items .group-photos .group span { 
     background: #fff; color: #47b; border-bottom: 1px solid #d49;
 }
-
-/*slider*/
-.ui-slider {
-	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	background: #f2f2f2;
-	border: 1px solid #aaa;
-	height: .8em;
-	position: relative;
-    width: 85ex;
-    margin-left: 2em;
-}
-.ui-slider-handle {
-	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	position: absolute;
-	z-index: 2;
-	top: -3px;
-	width: 1.2em;
-	height: 1.2em;
-	background: #515875;
-	border: 1px solid #ffffff;
-}
-.ui-slider-handle:hover {
-	background: #9198b5;
-}
-.ui-slider-handle-active, .ui-slider-handle-active:hover {
-	border: 1px solid #333;
-}
-.ui-slider-range {
-	/*resets*/margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none;
-	height: .8em;
-	background: #ddd;
-	position: absolute;
-	border: 1px solid #ffffff;
-	border-left: 0;
-	border-right: 0;
-	top: -1px;
-	z-index: 1;
-	opacity:.7;
-	filter:Alpha(Opacity=70);
-}
-#speed-control {
-}
-#speed-control .scale {
-    margin: 0; padding: 0;
-    width: 100%;
-    position: relative;
-}
-#speed-control .scale li {
-    font-size: 0.85em;
-    position: absolute;
-    top: 1em;
-    margin:0; padding: 0;
-    background: none;
-}
-#speed-control .scale li.last {
-    width: 1%;    
-}
-
 

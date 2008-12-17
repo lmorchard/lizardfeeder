@@ -50,6 +50,11 @@
                                    for things we've missed, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=469838">let us know</a>. 
                                 </p>
 
+                                <p>
+                                    You can click on one of the bars in the 
+                                    activity graph below to start the feed at a 
+                                    particular point in time:
+                                </p>
                                 <ul id="date-nav">
                                     <li class="year template">
                                         <div class="year-meta">
@@ -75,29 +80,30 @@
                                     </li>
                                 </ul>
 
+                                <p>
+                                    You can also control the playback speed of 
+                                    the feed with the following slider:
+                                </p>
+
                                 <div id="speed-control">
                                     <div class="ui-slider-handle"></div>
                                     <ul class="scale"><li class="template"></li></ul>
                                 </div>
 
-                            </div>
-
-                            <!--
-                            <div id="intro-options" class="pane">
-                                <h1>LizardFeeder Options</h1>
-
                                 <p>
-                                    Options go here someday.
+                                    Finally, you can hide this panel with the 
+                                    button on the lower right.
                                 </p>
-                            
+
                             </div>
-                            -->
 
                         </div>
 
                         <ul class="nav">
                             <li class="selected"><a href="#intro-about">About / Options</a></li>
-                            <!-- <li><a href="#intro-options">Options</a></li> -->
+                            <li><div class="status">
+                                <p>Feed time (<span id="speed-factor">1</span>x): <span id="last-time">...</span></p>
+                            </div></li>
                             <li class="hide"><a href="#intro-hide">x Hide</a></li>
                         </ul>
 
