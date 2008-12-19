@@ -1,0 +1,11 @@
+/**
+ * CSS tweaks for MSIE
+ */
+#intro ul.nav {
+    margin-bottom: 0em;
+}
+.filters ul.groups li.groups {
+}
+.filters ul.groups li.group label {
+    margin-top: -1em;
+}

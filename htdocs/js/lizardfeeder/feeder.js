@@ -31,7 +31,7 @@ LizardFeeder.Feeder.prototype = (function() {
             start_time:  new Date( new Date() - (30 * 60 * 1000) ),
             check_delay: 30 * 1000,
             max_entries: 50,
-            time_factor: 1
+            time_factor: 10
         },
 
         /**

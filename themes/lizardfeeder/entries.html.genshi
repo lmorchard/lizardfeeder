@@ -35,7 +35,7 @@
             <div class="group"><span>${group}</span></div>
             <h4 class="title">
                 <img class="favicon" src="${favicon}" />
-                <a class="link" href="${entry.link}">${entry.title}</a>
+                <a class="link" href="${entry.link}" target="_new">${entry.title}</a>
             </h4>
             <div class="updated">
                 <span class="timeago" title="${entry.updated}">${entry.updated}</span> — 

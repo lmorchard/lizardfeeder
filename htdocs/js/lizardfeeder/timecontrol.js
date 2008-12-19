@@ -46,25 +46,23 @@ LizardFeeder.TimeControl.prototype = (function() {
                 change: function(e, ui) {
                     var idx = parseInt( ( (ui.value-1) / 100 ) * ( speed_steps.length ) );
                     var speed = speed_steps[ idx ];
-                    that.config.main.feeder.config.time_factor = speed;
-                    $('#speed-factor').text(speed);
+                    that.config.main.setSpeedFactor(speed);
                 }
-            })
+            }).each(function() {
+                var scale = $('#speed-control .scale');
+                var width = scale.width();
+                var scale_tmpl = scale.find('.template');
 
-            var scale = $('#speed-control .scale');
-            var width = scale.width();
-            var scale_tmpl = scale.find('.template');
-
-            for (var i=0; i<speed_steps.length; i++) {
-                var step = speed_steps[i];
-                scale_tmpl.clone().removeClass('template')
-                    .text(step + 'x')
-                    // HACK: I have no idea why this works.
-                    .css('left',  10 + (width / (speed_steps.length-1) * 0.98 ) * i )
-                    .appendTo(scale);
-                scale.append(' ');
-            }
-            $('#speed-control .scale li:last').addClass('last');
+                for (var i=0; i<speed_steps.length; i++) {
+                    var step = speed_steps[i];
+                    scale_tmpl.clone().removeClass('template')
+                        .text(step + 'x')
+                        .css('left',  2 + (96 / (speed_steps.length-1) ) * i + '%' )
+                        .appendTo(scale);
+                    scale.append(' ');
+                }
+                $('#speed-control .scale li:last').addClass('last');
+            }).slider('moveTo', ( (100 / speed_steps.length) * 3 ));
 
             this.fetchArchiveStats(function(stats) {
 
@@ -162,14 +160,7 @@ LizardFeeder.TimeControl.prototype = (function() {
 
                 $('#feed-items').find('li:not(.template)').remove();
                 
-                // Stop the existing feeder and create a new one with the new
-                // start time, cloning the config of the old one.
-                this.config.main.feeder.stop();
-                this.config.main.feeder = new LizardFeeder.Feeder($.extend(
-                    this.config.main.feeder.config,
-                    { start_time: $.parseISO8601(date) }
-                )); 
-                this.config.main.feeder.start();
+                this.config.main.jumpToDate($.parseISO8601(date));
             }
         },
 

@@ -15,6 +15,12 @@
         <link rel="stylesheet" type="text/css" href="http://www.mozilla.com/style/tignish/content.css" media="screen" />
 
         <link rel="stylesheet" type="text/css" href="css/mozilla-lizardfeeder.css" media="screen" />
+        <!--[if IE]>
+            <link rel="stylesheet" type="text/css" href="css/lizardfeeder-msie.css" media="screen" />
+        <![endif]-->
+        <!--[if lte IE 6]>
+            <link rel="stylesheet" type="text/css" href="css/lizardfeeder-msie-6.css" media="screen" />
+        <![endif]-->
 
         <script src="js/sugar-arrays-min.js" type="text/javascript">/**/</script>
         <script src="js/jquery-1.2.6.min.js" type="text/javascript">/**/</script>
@@ -49,6 +55,10 @@
                                    Mozilla community. If you have suggestions
                                    for things we've missed, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=469838">let us know</a>. 
                                 </p>
+                            </div>
+
+                            <div id="intro-options" class="pane">
+                                <h1>LizardFeeder Options and Controls</h1>
 
                                 <p>
                                     You can click on one of the bars in the 
@@ -90,17 +100,13 @@
                                     <ul class="scale"><li class="template"></li></ul>
                                 </div>
 
-                                <p>
-                                    Finally, you can hide this panel with the 
-                                    button on the lower right.
-                                </p>
-
                             </div>
 
                         </div>
 
                         <ul class="nav">
-                            <li class="selected"><a href="#intro-about">About / Options</a></li>
+                            <li class="selected"><a href="#intro-about">About</a></li>
+                            <li><a href="#intro-options">Options</a></li>
                             <li><div class="status">
                                 <p>Feed time (<span id="speed-factor">1</span>x): <span id="last-time">...</span></p>
                             </div></li>

@@ -74,8 +74,10 @@ h4#moz a {
 }
 #intro .panes {
     margin: 0; padding: 0;
-    height: 425px;
+    min-height: 125px;
+    /*
     overflow: auto;
+    */
     border: 1px solid #212845;
     border-top: none;
     background: #fff;
@@ -127,6 +129,9 @@ h4#moz a {
 }
 #intro .status {
     padding: 0.25em 0.75em; margin: 0 0.25em 0 0;
+}
+#intro .status p {
+    font-size: 0.85em
 }
 
 #date-nav {
@@ -462,4 +467,5 @@ h4#moz a {
 .filters .group-photos label span.name, #feed-items .group-photos .group span { 
     background: #fff; color: #47b; border-bottom: 1px solid #d49;
 }
+
 

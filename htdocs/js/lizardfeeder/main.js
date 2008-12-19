@@ -43,11 +43,6 @@ LizardFeeder.Main = (function(){
                 this.wireUpFeedItems();
                 this.wireUpFilters();
 
-                this.time_control = new LizardFeeder.TimeControl({ 
-                    main: this 
-                });
-                this.time_control.init();
-
                 this.feeder = new LizardFeeder.Feeder({
                     main:        this,
                     start_time:  start_time,
@@ -57,9 +52,36 @@ LizardFeeder.Main = (function(){
                 });
                 this.feeder.start();
 
+                this.time_control = new LizardFeeder.TimeControl({ 
+                    main: this 
+                });
+                this.time_control.init();
+
             }));
 
             return this;
+        },
+
+        /**
+         * Stop the existing feeder and create a new one with the new
+         * given start time, cloning the config of the old one.
+         */
+        jumpToDate: function(date) {
+            $('#last-time').text( ''+date ); //$.dateToISO8601(updated) );
+            this.feeder.stop();
+            this.feeder = new LizardFeeder.Feeder($.extend(
+                this.feeder.config,
+                { start_time: date }
+            )); 
+            this.feeder.start();
+        },
+
+        /**
+         * Set the feedeer's current time factor to the given value.
+         */
+        setSpeedFactor: function(speed_factor) {
+            this.feeder.config.time_factor = speed_factor;
+            $('#speed-factor').text(speed_factor);
         },
 
         /**
@@ -186,10 +208,12 @@ LizardFeeder.Main = (function(){
             // Hide or show all entries for the group or source.
             // HACK: Deferred because it seems to let the checkboxes respond
             $.delay(this, function() {
-                if (checked) {
-                    items.show('fast').effect('highlight', {}, 250);
-                } else { 
-                    items.hide('fast');
+                if (items) {
+                    if (checked) {
+                        items.show('fast');
+                    } else { 
+                        items.hide('fast');
+                    }
                 }
             }, 1);
 
