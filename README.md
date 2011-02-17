@@ -1,4 +1,4 @@
-= Lizardfeeder v0.0 =
+# Lizardfeeder v0.0
 
 A firehose feed aggregator for the Mozilla community
 http://feeds.mozilla.com/
@@ -9,17 +9,17 @@ against Planet Venus.  The original Planet Venus can be found here:
 
 http://www.intertwingly.net/code/venus/
 
-== Requirements ==
+## Requirements
 
 * Python 2.4 and above
 
-== Installation ==
+## Installation
 
 # Create a local config, optionally edit it.
 cp conf/config.ini-dist conf/config.ini
 cp conf/hg-feeds.opml-dist conf/hg-feeds.opml
 
-== Usage ==
+## Usage
 
 # For best results, set up a crontab, eg:
 */10 * * * * $HOME/devel/mozilla/lizardfeeder/run.sh
